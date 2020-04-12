@@ -1,0 +1,7 @@
+true;HUES885;65000;true;25000
+false;HHS626;52000;true;30000
+true;HUES885;65000;true;25000
+
+
+
+
