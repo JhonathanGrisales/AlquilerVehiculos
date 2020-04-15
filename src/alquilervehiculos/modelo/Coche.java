@@ -72,4 +72,11 @@ public class Coche extends AbstractVehiculo implements Serializable{
         Object[] data={ isExtras(), getMatricula(),getKm(), isEstado(), getValorAlquiler()};
         return data;
     }
+     
+      public String [] getArray(){
+        
+        String[] datos = {String.valueOf(extras), matricula,String.valueOf(km),String.valueOf(estado), String.valueOf(valorAlquiler)};
+      
+        return datos;
+    }
 }

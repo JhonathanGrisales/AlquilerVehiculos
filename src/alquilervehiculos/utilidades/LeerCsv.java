@@ -79,7 +79,7 @@ public class LeerCsv {
 
             while ((linea = br.readLine()) != null) { //Mientras alla una linea para leer
 
-                String[] datos = linea.split(";"); //La linea que se lea que se separe por ;
+                String[] datos = linea.split(","); //La linea que se lea que se separe por ;
 
                 Coche coche = new Coche(Boolean.parseBoolean(datos[0]),
                         datos[1],
