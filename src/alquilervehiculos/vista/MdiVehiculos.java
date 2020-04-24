@@ -7,11 +7,14 @@ package alquilervehiculos.vista;
 
 import alquilervehiculos.controlador.GestionUsuario;
 import alquilervehiculos.controlador.GestionVehiculo;
+import alquilervehiculos.modelo.AbstractVehiculo;
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Moto;
 import alquilervehiculos.modelo.Usuario;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -61,15 +64,15 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 mnuListarCoches.setVisible(true);
                 mnuListarMotos.setVisible(true);
                 mnuCrearUsuario.setVisible(true);
-                
+
                 break;
             //Usuario
             case "2":
-               iniciarMenus(false);
+                iniciarMenus(false);
                 mnuVehiculos.setVisible(true);
                 mnuListarCoches.setVisible(true);
                 mnuListarMotos.setVisible(true);
-                
+
                 break;
         }
 
@@ -735,34 +738,43 @@ public class MdiVehiculos extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuCerrarSesionActionPerformed
     private void pintarCoches() {
 
-        DefaultTableModel model = (DefaultTableModel) tblCoches.getModel();
-        model.getDataVector().removeAllElements();
-        for (Coche coches : gestionVehiculo.getCoches()) {
-
-            model.addRow(coches.obtenerArregloObjeto());
-        }
-        tblCoches.setModel(model);
+//        DefaultTableModel model = (DefaultTableModel) tblCoches.getModel();
+//        model.getDataVector().removeAllElements();
+//
+//        for (AbstractVehiculo coche : gestionVehiculo.obtenerVehiculos("coche")) {
+//
+//            model.addRow(coche.obtenerArregloObjeto());
+//        }
+//        tblCoches.setModel(model);
     }
 
     private void pintarMotos() {
 
-        DefaultTableModel model = (DefaultTableModel) tblMotos.getModel();
-        model.getDataVector().removeAllElements();
-        
-        for (Moto motos : gestionVehiculo.getMotos()) {
-
-            model.addRow(motos.obtenerArregloObjeto());
-        }
-        tblMotos.setModel(model);
+//        DefaultTableModel model = (DefaultTableModel) tblMotos.getModel();
+//        model.getDataVector().removeAllElements();
+//        
+//        for (Moto motos : gestionVehiculo.getMotos()) {
+//
+//            model.addRow(motos.obtenerArregloObjeto());
+//        }
+//        tblMotos.setModel(model);
     }
 
     private void mnuListarCochesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListarCochesActionPerformed
 
-        //LLENAR VEHICULOS
-        gestionVehiculo.llenarCoches();
+        DefaultTableModel model = (DefaultTableModel) tblCoches.getModel();
+        model.getDataVector().removeAllElements();
 
+        for (AbstractVehiculo coche : gestionVehiculo.obtenerVehiculos("Coche")) {
+
+            model.addRow(coche.obtenerArregloObjeto());
+        }
+        tblCoches.setModel(model);
+
+//LLENAR VEHICULOS
+gestionVehiculo.llenarVehiculos();
         //LLENAR VEHICULOS
-        pintarCoches();
+//        pintarCoches();
         jifCoches.repaint();
         jifCoches.show();
         //Maximizar el listado   
@@ -779,11 +791,19 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
     private void mnuListarMotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuListarMotosActionPerformed
 
-        //LLENAR VEHICULOS
-        gestionVehiculo.llenarMotos();
+        DefaultTableModel model = (DefaultTableModel) tblMotos.getModel();
+        model.getDataVector().removeAllElements();
 
+        for (AbstractVehiculo moto : gestionVehiculo.obtenerVehiculos("Moto")) {
+
+            model.addRow(moto.obtenerArregloObjeto());
+        }
+        tblMotos.setModel(model);
+
+//LLENAR VEHICULOS
+//        gestionVehiculo.llenarVehiculos();
         //LLENAR VEHICULOS
-        pintarMotos();
+//        pintarMotos();
         jifMotos.repaint();
         jifMotos.show();
         //Maximizar el listado s  
@@ -829,7 +849,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
             Coche co = new Coche(extras, txtMatriculaCarro.getText(), Integer.parseInt(txtKmCarro.getText()),
                     estado, Double.parseDouble(txtValorAlquilerCarro.getText()));
 
-            gestionVehiculo.adicionarCoches(co);
+//            gestionVehiculo.adicionarCoches(co);
             pintarCoches();
             //LIMPIAR PANTALLA DESPUES DE AGREGAR MOTO
 
@@ -875,7 +895,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
             Moto mot = new Moto(casco, txtMatriculaMoto.getText(), Integer.parseInt(txtKmMoto.getText()),
                     estadoMoto, Double.parseDouble(txtValorAlquilerMoto.getText()));
 
-            gestionVehiculo.adicionarMotos(mot);
+//            gestionVehiculo.adicionarMotos(mot);
             pintarMotos();
             //LIMPIAR PANTALLA DESPUES DE AGREGAR MOTO
 

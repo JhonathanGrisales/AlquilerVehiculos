@@ -65,6 +65,11 @@ public class Furgoneta extends AbstractVehiculo {
        
         return calcularAlquiler(km);
     }
+
+    @Override
+    public Object[] obtenerArregloObjeto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

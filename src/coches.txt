@@ -5,3 +5,4 @@ true,WHI026,32000,true,30000.0
 true,UES885,25000,true,30000.0
 true,XLL80,12500,true,35000.0
 false,HHJ856,25000,false,30000.0
+false,YUT589,25000,false,30000.0

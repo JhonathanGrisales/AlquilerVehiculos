@@ -1,4 +1,4 @@
-true;DPJ81;6800;true;12500
-true;XLL80;1500;false;25000
+true,DPJ81,6800,true,12500
+true,XLL80,1500,false,25000
 
 
