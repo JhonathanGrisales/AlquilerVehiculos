@@ -5,12 +5,14 @@
  */
 package alquilervehiculos.modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jhonathan_G
  */
-public class Moto extends AbstractVehiculo{
-    
+public class Moto extends AbstractVehiculo implements Serializable{
+
     public boolean casco;
 
     public Moto(boolean casco, String matricula, int km, boolean estado, double valorAlquiler) {
@@ -58,18 +60,25 @@ public class Moto extends AbstractVehiculo{
         this.valorAlquiler = valorAlquiler;
     }
 
-   
-    
-    
     @Override
     public double calcularAlquiler(int km) {
-        
-       return calcularAlquiler(km); 
+
+        return calcularAlquiler(km);
     }
-    
-     //Areglo de objetos para meter en la tabla 
-     public Object[] obtenerArregloObjeto(){
-        Object[] data={ isCasco(), getMatricula(),getKm(), isEstado(), getValorAlquiler()};
+
+    //Areglo de objetos para meter en la tabla 
+    public Object[] obtenerArregloObjeto() {
+        Object[] data = {isCasco(), getMatricula(), getKm(), isEstado(), getValorAlquiler()};
         return data;
+    }
+
+    //MODIFICAR
+    @Override
+    public String[] getArray() {
+
+        String[] datos = {String.valueOf(casco), matricula, String.valueOf(km), String.valueOf(estado), String.valueOf(valorAlquiler)};
+
+        return datos;
+
     }
 }

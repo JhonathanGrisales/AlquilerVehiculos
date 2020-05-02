@@ -5,11 +5,13 @@
  */
 package alquilervehiculos.modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jhonathan_G
  */
-public class Furgoneta extends AbstractVehiculo {
+public class Furgoneta extends AbstractVehiculo implements Serializable{
     
     public short capacidad;
 
@@ -68,7 +70,18 @@ public class Furgoneta extends AbstractVehiculo {
 
     @Override
     public Object[] obtenerArregloObjeto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object[] data={ getCapacidad(), getMatricula(),getKm(), isEstado(), getValorAlquiler()};
+                 return data;
+                }
+    
+
+    
+    //MODIFICAR
+   public String [] getArray(){
+        
+        String[] datos = {String.valueOf(capacidad), matricula,String.valueOf(km),String.valueOf(estado), String.valueOf(valorAlquiler)};
+      
+        return datos;
     }
     
     

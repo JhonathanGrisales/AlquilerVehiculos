@@ -5,6 +5,8 @@
  */
 package alquilervehiculos.modelo;
 
+import java.util.List;
+
 /**
  *
  * @author Jhonathan_G
@@ -72,6 +74,13 @@ public abstract class AbstractVehiculo {
     }
     
     public abstract Object[] obtenerArregloObjeto();
+    
+     public abstract String [] getArray();
+     
+     
+
+    
+   
     
 
 }

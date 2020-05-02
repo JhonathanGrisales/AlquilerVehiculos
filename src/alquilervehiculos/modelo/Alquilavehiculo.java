@@ -5,11 +5,13 @@
  */
 package alquilervehiculos.modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jhonathan_G
  */
-public class Alquilavehiculo {
+public class Alquilavehiculo implements Serializable{
 
     public AbstractVehiculo vehiculo;
     public Usuario usuario;

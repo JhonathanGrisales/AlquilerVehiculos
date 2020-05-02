@@ -7,6 +7,7 @@ package alquilervehiculos.controlador;
 
 import alquilervehiculos.modelo.AbstractVehiculo;
 import alquilervehiculos.modelo.Coche;
+import alquilervehiculos.modelo.Furgoneta;
 import alquilervehiculos.modelo.Moto;
 import alquilervehiculos.utilidades.EscribirArchivoPlano;
 import alquilervehiculos.utilidades.LeerCsv;
@@ -37,9 +38,9 @@ public class GestionVehiculo implements Serializable {
 
         vehiculos = LeerCsv.cargarCoches();
 
-//        if (vehiculos == null || vehiculos.isEmpty()) {
-//            vehiculos = LeerCsv.cargarCoches();
-//        }
+        if (vehiculos == null || vehiculos.isEmpty()) {
+            vehiculos = LeerCsv.cargarCoches();
+        }
     }
 
     public List<AbstractVehiculo> getVehiculos() {
@@ -70,6 +71,12 @@ public class GestionVehiculo implements Serializable {
                         listaTemporal.add(vehiculo);
                     }
                     break;
+                    
+                    case "Furgoneta":
+                    if (vehiculo instanceof Furgoneta) {
+                        listaTemporal.add(vehiculo);
+                    }
+                    break;
 
             }
 
@@ -77,65 +84,111 @@ public class GestionVehiculo implements Serializable {
         return listaTemporal;
 
     }
-}
+    
+    
+//    public boolean eliminarCoche(AbstractVehiculo vehiculo){
+//        
+//       for (AbstractVehiculo coche : vehiculos) {
+//           
+//           if (vehiculo.getMatricula() == )
+//       }
+//
+//            
+//        
+//        
+//    }
 
 /// Adicionar Coches 
-//public void adicionarCoches(Coche coche) {
-//
-//        if (ValidarExitenciaCarro(coche)) {
-//
-//            JOptionPane.showMessageDialog(null, "El vehiculo ya existe " + coche.getMatricula());
-//
-//        } else {
-//
-//            //        coches = LeerCsv.cargarCoches();
-//            coches.add(coche);
-//            //Agregar a el archivo original 
-//            EscribirArchivoPlano.ExportarCoches(coches);
-//        }
-//
-//    }
-//
-//    private boolean ValidarExitenciaCarro(Coche coche) {
-//
-//        for (Coche co : this.coches) {
-//
-//            if (co.getMatricula().compareTo(coche.getMatricula()) == 0) {
-//
-//                return true;
-//            }
-//        }
-//        return false;
-//
-//    }
-//
-//    ///Adicionar motos
-//    public void adicionarMotos(Moto moto) {
-//
-//        if (ValidarExitenciaMoto(moto)) {
-//
-//            JOptionPane.showMessageDialog(null, "El vehiculo ya existe " + moto.getMatricula());
-//
-//        } else {
-//
-//            //        coches = LeerCsv.cargarCoches();
-//            motos.add(moto);
-//            //Agregar a el archivo original 
-//
-//        }
-//
-//    }
-//
-//    private boolean ValidarExitenciaMoto(Moto moto) {
-//
-//        for (Moto mot : this.motos) {
-//
-//            if (mot.getMatricula().compareTo(moto.getMatricula()) == 0) {
-//
-//                return true;
-//            }
-//        }
-//        return false;
-//
-//  }
-//}
+    public void adicionarCoches(AbstractVehiculo coche) {
+
+        if (ValidarExitenciaCarro(coche)) {
+
+            JOptionPane.showMessageDialog(null, "El vehiculo ya existe " + coche.getMatricula());
+
+        } else {
+
+            vehiculos.add(coche);
+
+            //Agregar a el archivo original
+            EscribirArchivoPlano.ExportarCoches(vehiculos);
+
+        }
+
+    }
+
+    private boolean ValidarExitenciaCarro(AbstractVehiculo vehiculo) {
+
+        for (AbstractVehiculo coche : this.vehiculos) {
+
+            if (coche.getMatricula().compareTo(vehiculo.getMatricula()) == 0) {
+
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+/// Adicionar Motos
+    public void adicionarMotos(AbstractVehiculo moto) {
+
+        if (ValidarExitenciaMoto(moto)) {
+
+            JOptionPane.showMessageDialog(null, "El vehiculo ya existe " + moto.getMatricula());
+
+        } else {
+
+            vehiculos.add(moto);
+
+            //Agregar a el archivo original
+            EscribirArchivoPlano.ExportarMotos(vehiculos);
+
+        }
+
+    }
+
+    private boolean ValidarExitenciaMoto(AbstractVehiculo vehiculo) {
+
+        for (AbstractVehiculo moto : this.vehiculos) {
+
+            if (moto.getMatricula().compareTo(vehiculo.getMatricula()) == 0) {
+
+                return true;
+            }
+        }
+        return false;
+
+    } 
+    
+    
+    /// Adicionar Motos
+    public void adicionarFurgon(AbstractVehiculo furgon) {
+
+        if (ValidarExitenciaMoto(furgon)) {
+
+            JOptionPane.showMessageDialog(null, "El vehiculo ya existe " + furgon.getMatricula());
+
+        } else {
+
+            vehiculos.add(furgon);
+
+            //Agregar a el archivo original
+            EscribirArchivoPlano.ExportarFurgon(vehiculos);
+
+        }
+
+    }
+
+    private boolean ValidarExitenciaFurgon(AbstractVehiculo vehiculo) {
+
+        for (AbstractVehiculo furgon : this.vehiculos) {
+
+            if (furgon.getMatricula().compareTo(vehiculo.getMatricula()) == 0) {
+
+                return true;
+            }
+        }
+        return false;
+
+    }   
+}
