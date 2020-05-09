@@ -75,6 +75,8 @@ public abstract class AbstractVehiculo {
     
     public abstract Object[] obtenerArregloObjeto();
     
+    public abstract Object[] obtenerArregloObjetoDos();
+    
      public abstract String [] getArray();
      
      

@@ -71,9 +71,15 @@ public class GestionVehiculo implements Serializable {
                         listaTemporal.add(vehiculo);
                     }
                     break;
-                    
-                    case "Furgoneta":
+
+                case "Furgoneta":
                     if (vehiculo instanceof Furgoneta) {
+                        listaTemporal.add(vehiculo);
+                    }
+                    break;
+
+                case "Vehiculos":
+                    if (vehiculo instanceof AbstractVehiculo) {
                         listaTemporal.add(vehiculo);
                     }
                     break;
@@ -84,8 +90,7 @@ public class GestionVehiculo implements Serializable {
         return listaTemporal;
 
     }
-    
-    
+
 //    public boolean eliminarCoche(AbstractVehiculo vehiculo){
 //        
 //       for (AbstractVehiculo coche : vehiculos) {
@@ -97,7 +102,6 @@ public class GestionVehiculo implements Serializable {
 //        
 //        
 //    }
-
 /// Adicionar Coches 
     public void adicionarCoches(AbstractVehiculo coche) {
 
@@ -158,9 +162,8 @@ public class GestionVehiculo implements Serializable {
         }
         return false;
 
-    } 
-    
-    
+    }
+
     /// Adicionar Motos
     public void adicionarFurgon(AbstractVehiculo furgon) {
 
@@ -190,5 +193,5 @@ public class GestionVehiculo implements Serializable {
         }
         return false;
 
-    }   
+    }
 }

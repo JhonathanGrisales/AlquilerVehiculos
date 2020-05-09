@@ -35,10 +35,10 @@ public class LeerCsv {
             br = new BufferedReader(fr);
             // Lectura del fichero
             String linea;
-            br.readLine(); //Leo una linea (Omitir encabezado)
+//            br.readLine(); //Leo una linea (Omitir encabezado)
             while ((linea = br.readLine()) != null) { //Mientras alla una linea para leer
 
-                String[] datos = linea.split(";"); //La linea que se lea que se separe por ;
+                String[] datos = linea.split(","); //La linea que se lea que se separe por ;
 
                 Usuario usuario = new Usuario(
                         datos[0],

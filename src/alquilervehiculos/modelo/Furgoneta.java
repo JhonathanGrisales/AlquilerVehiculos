@@ -83,6 +83,12 @@ public class Furgoneta extends AbstractVehiculo implements Serializable{
       
         return datos;
     }
+
+    @Override
+    public Object[] obtenerArregloObjetoDos() {
+        Object[] data={getMatricula(),getKm(),getValorAlquiler(),getClass().getSimpleName(), isEstado()};
+        return data;
+    }
     
     
     

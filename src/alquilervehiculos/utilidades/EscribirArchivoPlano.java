@@ -10,6 +10,7 @@ import alquilervehiculos.modelo.AbstractVehiculo;
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Furgoneta;
 import alquilervehiculos.modelo.Moto;
+import alquilervehiculos.modelo.Usuario;
 import com.csvreader.CsvWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,9 +23,6 @@ import java.util.logging.Logger;
  * @author Jhonathan_G
  */
 public class EscribirArchivoPlano {
-    
-    
-
 
     public static void ExportarCoches(List<AbstractVehiculo> Coche) {
 
@@ -46,8 +44,8 @@ public class EscribirArchivoPlano {
         csvWriter.close();
 
     }
-    
-     public static void ExportarMotos(List<AbstractVehiculo> moto) {
+
+    public static void ExportarMotos(List<AbstractVehiculo> moto) {
 
         CsvWriter csvWriter = new CsvWriter("src/motos.txt");
 
@@ -67,10 +65,9 @@ public class EscribirArchivoPlano {
         csvWriter.close();
 
     }
-     
-     public static void ExportarFurgon(List<AbstractVehiculo> furgon) {
-         
-         
+
+    public static void ExportarFurgon(List<AbstractVehiculo> furgon) {
+
         CsvWriter csvWriter = new CsvWriter("src/furgonetas.txt");
 
         for (AbstractVehiculo vehiculo : furgon) {
@@ -90,6 +87,24 @@ public class EscribirArchivoPlano {
 
     }
 
-    
+    public static void ExportarUsuario(List<Usuario> usuario) {
+
+        
+
+        CsvWriter csvWriter = new CsvWriter("src/usuarios.csv");
+        for (Usuario usu : usuario) {
+
+            String[] datos = usu.getArray();
+
+            try {
+                csvWriter.writeRecord(datos);
+            } catch (IOException ex) {
+                Logger.getLogger(EscribirArchivoPlano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        csvWriter.close();
+
+    }
 
 }

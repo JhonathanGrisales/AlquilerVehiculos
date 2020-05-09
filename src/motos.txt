@@ -1,4 +1,5 @@
-true,DPJ81,6800,true,12500.0
 true,XLL80,1500,false,25000.0
 true,FAZ12A,8000,true,15000.0
 true,TYU15A,25000,false,15000.0
+true,DRT895,2566,true,15300.0
+false,ERG89A,5600,true,15000.0

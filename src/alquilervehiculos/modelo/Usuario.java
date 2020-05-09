@@ -74,9 +74,18 @@ public class Usuario implements Serializable{
         this.tipoUsuario = tipoUsuario;
     }
     
+    public String [] getArray(){
+        
+        String[] datos = {String.valueOf(cedula), String.valueOf(nombre), String.valueOf(login),String.valueOf(passwd), String.valueOf(tipoUsuario.getCodigo())};
+      
+        return datos;
+    }
     
     
-    
- 
+ public Object[] obtenerArregloObjeto(){
+        Object[] data={getCedula(),getNombre(),getLogin(),getPasswd(),getTipoUsuario().getCodigo()};
+        return data;
+     
+     }
     
 }

@@ -59,6 +59,7 @@ public class Coche extends AbstractVehiculo implements Serializable{
     public void setValorAlquiler(double valorAlquiler) {
         this.valorAlquiler = valorAlquiler;
     }
+    
 
   
     
@@ -74,6 +75,12 @@ public class Coche extends AbstractVehiculo implements Serializable{
         Object[] data={ isExtras(), getMatricula(),getKm(), isEstado(), getValorAlquiler()};
         return data;
     }
+     
+     public Object[] obtenerArregloObjetoDos(){
+        Object[] data={getMatricula(),getKm(),getValorAlquiler(),getClass().getSimpleName(), isEstado()};
+        return data;
+     
+     }
      
       public String [] getArray(){
         
