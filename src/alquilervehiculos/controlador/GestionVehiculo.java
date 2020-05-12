@@ -6,6 +6,7 @@
 package alquilervehiculos.controlador;
 
 import alquilervehiculos.modelo.AbstractVehiculo;
+import alquilervehiculos.modelo.AlquilaVehiculo;
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Furgoneta;
 import alquilervehiculos.modelo.Moto;
@@ -26,10 +27,12 @@ import javax.swing.JOptionPane;
 public class GestionVehiculo implements Serializable {
 
     private List<AbstractVehiculo> vehiculos;
+    private List<AlquilaVehiculo> alquilaVehiculos;
 
     public GestionVehiculo() {
 
         llenarVehiculos();
+        llenarAlquilerArchivoPlano();
 
     }
 
@@ -42,6 +45,19 @@ public class GestionVehiculo implements Serializable {
             vehiculos = LeerCsv.cargarCoches();
         }
     }
+    
+    
+    public void llenarAlquiler(AlquilaVehiculo alquiler){
+        
+        alquilaVehiculos.add(alquiler);
+        EscribirArchivoPlano.ExportarAlquiler(alquilaVehiculos);
+        
+    }
+    
+    public void llenarAlquilerArchivoPlano(){
+        
+        alquilaVehiculos = LeerCsv.cargarAlquiler();
+    }
 
     public List<AbstractVehiculo> getVehiculos() {
         return vehiculos;
@@ -51,6 +67,17 @@ public class GestionVehiculo implements Serializable {
         this.vehiculos = vehiculos;
     }
 
+    public List<AlquilaVehiculo> getAlquilaVehiculos() {
+        return alquilaVehiculos;
+    }
+
+   
+
+    public void setAlquilaVehiculos(List<AlquilaVehiculo> alquilaVehiculos) {
+        this.alquilaVehiculos = alquilaVehiculos;
+    }
+
+    
     public List<AbstractVehiculo> obtenerVehiculos(String tipo) {
 
         List<AbstractVehiculo> listaTemporal = new ArrayList<>();
@@ -194,4 +221,6 @@ public class GestionVehiculo implements Serializable {
         return false;
 
     }
+
+    
 }

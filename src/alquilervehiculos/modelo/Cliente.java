@@ -46,12 +46,23 @@ public class Cliente implements Serializable {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-    
-     @Override
+
+    @Override
     public String toString() {
         return this.nombre.toUpperCase();
     }
 
-  
+    public Object[] obtenerArregloObjeto() {
+        Object[] data = {getCedula(), getNombre(), getTipoUsuario().getCodigo()};
+        return data;
+
+    }
+
+    public String[] getArray() {
+
+        String[] datos = {String.valueOf(cedula), String.valueOf(nombre), String.valueOf(tipoUsuario.getCodigo())};
+
+        return datos;
+    }
 
 }

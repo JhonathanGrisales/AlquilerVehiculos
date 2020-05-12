@@ -7,6 +7,8 @@ package alquilervehiculos.utilidades;
 
 import alquilervehiculos.controlador.GestionVehiculo;
 import alquilervehiculos.modelo.AbstractVehiculo;
+import alquilervehiculos.modelo.AlquilaVehiculo;
+import alquilervehiculos.modelo.Cliente;
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Furgoneta;
 import alquilervehiculos.modelo.Moto;
@@ -106,5 +108,48 @@ public class EscribirArchivoPlano {
         csvWriter.close();
 
     }
+    
+    public static void ExportarCliente(List<Cliente> cliente) {
+
+        
+
+        CsvWriter csvWriter = new CsvWriter("src/clientes.txt");
+        for (Cliente cli : cliente) {
+
+            String[] datos = cli.getArray();
+
+            try {
+                csvWriter.writeRecord(datos);
+            } catch (IOException ex) {
+                Logger.getLogger(EscribirArchivoPlano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        csvWriter.close();
+
+    }
+    
+    public static void ExportarAlquiler(List<AlquilaVehiculo> alquiler) {
+
+        
+
+        CsvWriter csvWriter = new CsvWriter("src/alquiler.txt");
+        
+        for (AlquilaVehiculo alquila : alquiler) {
+
+            String[] datos = alquila.getArray();
+
+            try {
+                csvWriter.writeRecord(datos);
+            } catch (IOException ex) {
+                Logger.getLogger(EscribirArchivoPlano.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        csvWriter.close();
+
+    }
+    
+    
 
 }

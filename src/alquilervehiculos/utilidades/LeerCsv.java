@@ -6,6 +6,8 @@
 package alquilervehiculos.utilidades;
 
 import alquilervehiculos.modelo.AbstractVehiculo;
+import alquilervehiculos.modelo.AlquilaVehiculo;
+import alquilervehiculos.modelo.Cliente;
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Furgoneta;
 import alquilervehiculos.modelo.Moto;
@@ -251,6 +253,83 @@ public class LeerCsv {
             }
         }
         
+
+        return listado;
+    }
+    
+    
+   public static List<Cliente> cargarClientes(TipoUsuario[] tipos) {
+        List<Cliente> listado = new ArrayList<>(); //Declarando listado de usuarios inicia vacio
+        File archivo = null; //Objeto de tipo archivos
+        FileReader fr = null; //Objeto filereader permite leer archivos de disco 
+        BufferedReader br = null; //Objeto que permite llevar esos datos a la memoria ram 
+
+        try {
+            archivo = new File("src/clientes.txt"); //Carpeta Raiz de proyecto 
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            // Lectura del fichero
+            String linea;
+//            
+            while ((linea = br.readLine()) != null) { //Mientras alla una linea para leer
+
+                String[] datos = linea.split(","); //La linea que se lea que se separe por ;
+
+                
+                Cliente cliente = new Cliente(datos[0], datos[1], tipos[Integer.parseInt(datos[2]) - 1]);
+                        
+             
+                listado.add(cliente);
+
+            }
+        } catch (Exception e) {
+            System.out.println("El archivo no existe clientes = " + e.getMessage());
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
+        return listado;
+    }  
+   
+   public static List<AlquilaVehiculo> cargarAlquiler() {
+        List<AlquilaVehiculo> listado = new ArrayList<>(); //Declarando listado de usuarios inicia vacio
+        File archivo = null; //Objeto de tipo archivos
+        FileReader fr = null; //Objeto filereader permite leer archivos de disco 
+        BufferedReader br = null; //Objeto que permite llevar esos datos a la memoria ram 
+
+        try {
+            archivo = new File("src/alquiler.txt"); //Carpeta Raiz de proyecto 
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            // Lectura del fichero
+            String linea;
+//            br.readLine(); //Leo una linea (Omitir encabezado)
+            while ((linea = br.readLine()) != null) { //Mientras alla una linea para leer
+
+                String[] datos = linea.split(","); //La linea que se lea que se separe por ;
+
+               AlquilaVehiculo alquila = new AlquilaVehiculo(datos[0], datos[1], datos[2]);
+
+                listado.add(alquila);
+
+            }
+        } catch (Exception e) {
+            System.out.println("El archivo no existe ALQUILER = " + e.getMessage());
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
 
         return listado;
     }

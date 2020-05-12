@@ -67,7 +67,7 @@ public class Coche extends AbstractVehiculo implements Serializable{
 
     @Override
     public double calcularAlquiler(int km) {
-        return calcularAlquiler(km);
+        return 5000 *(double)km;
     }
     
     //Areglo de objetos para meter en la tabla 
@@ -88,4 +88,10 @@ public class Coche extends AbstractVehiculo implements Serializable{
       
         return datos;
     }
+
+   
+    
+    
+
+   
 }

@@ -61,9 +61,9 @@ public class Moto extends AbstractVehiculo implements Serializable{
     }
 
     @Override
-    public double calcularAlquiler(int km) {
+    public double calcularAlquiler(int kmRecorridos) {
 
-        return calcularAlquiler(km);
+       return 5000 *kmRecorridos;
     }
 
     //Areglo de objetos para meter en la tabla 
@@ -87,4 +87,8 @@ public class Moto extends AbstractVehiculo implements Serializable{
         Object[] data={getMatricula(),getKm(),getValorAlquiler(),getClass().getSimpleName(), isEstado()};
         return data;
     }
+
+    
+    
+    
 }

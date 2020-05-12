@@ -25,6 +25,7 @@ public abstract class AbstractVehiculo {
         this.estado = estado;
         this.valorAlquiler = valorAlquiler;
     }
+    
 
     public String getMatricula() {
         return matricula;

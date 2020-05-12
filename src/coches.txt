@@ -1,4 +1,2 @@
-false,CVY002,65000,true,25000.0
-false,HHS626,52000,true,30000.0
-true,MJO746,65000,true,25000.0
-true,MOV157,25000,true,15000.0
+true,HHS626,1500,true,25000.0
+true,YUI745,1500,true,25000.0
