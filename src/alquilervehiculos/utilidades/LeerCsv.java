@@ -320,7 +320,7 @@ public class LeerCsv {
 
             }
         } catch (Exception e) {
-            System.out.println("El archivo no existe ALQUILER = " + e.getMessage());
+//            System.out.println("El archivo no existe ALQUILER = " + e.getMessage());
         } finally {
             try {
                 if (null != fr) {

@@ -361,7 +361,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Matricula Vehiculo", "ID Cliente", "Restricciones Cliente", "Usuario de alquiler", "Fecha Alquiler", "Fecha Entrega", "Title 7"
+                "Matricula Vehiculo", "ID Cliente", "Restricciones Cliente", "Usuario de alquiler", "Fecha Alquiler", "Fecha Entrega", "Dias de Alquiler"
             }
         ) {
             Class[] types = new Class [] {
@@ -388,8 +388,8 @@ public class MdiVehiculos extends javax.swing.JFrame {
             jifVehiculosEnAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jifVehiculosEnAlquilerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                .addGap(21, 21, 21))
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jifVehiculosEnAlquilerLayout.setVerticalGroup(
             jifVehiculosEnAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,7 +400,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
         );
 
         desktopPane.add(jifVehiculosEnAlquiler);
-        jifVehiculosEnAlquiler.setBounds(0, 0, 600, 400);
+        jifVehiculosEnAlquiler.setBounds(30, 0, 745, 400);
 
         jifCoches.setClosable(true);
         jifCoches.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -818,11 +818,11 @@ public class MdiVehiculos extends javax.swing.JFrame {
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jcFechaFinMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifMotos);
-        jifMotos.setBounds(20, 10, 813, 457);
+        jifMotos.setBounds(20, 10, 813, 461);
 
         jifCrearUsuario.setClosable(true);
         jifCrearUsuario.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -2479,19 +2479,18 @@ public class MdiVehiculos extends javax.swing.JFrame {
         DefaultTableModel modelMoto = (DefaultTableModel) tblMotos.getModel();
         int filaSeleccionada = tblMotos.getSelectedRow();
 
-        if (jcFechaInicioMoto.getDate() != null && jcFechaFinMoto.getDate() != null) {
+        if (filaSeleccionada >= 0) {
 
-            if (filaSeleccionada >= 0) {
+            if (modelMoto.getValueAt(filaSeleccionada, 3).toString() == "true") {
 
-                String cliente = JOptionPane.showInputDialog("Ingrese cedula del cliente");
+                if (jcFechaInicioMoto.getDate() != null && jcFechaFinMoto.getDate() != null) {
+                    DateFormat dato = new SimpleDateFormat("dd-MM-yyy");
+                    String datoInicio = dato.format(jcFechaInicioMoto.getDate());
 
-                DateFormat dato = new SimpleDateFormat("dd-MM-yyy");
-                String datoInicio = dato.format(jcFechaInicioMoto.getDate());
+                    DateFormat datoDos = new SimpleDateFormat("dd-MM-yyy");
+                    String datoFIn = datoDos.format(jcFechaFinMoto.getDate());
 
-                DateFormat datoDos = new SimpleDateFormat("dd-MM-yyy");
-                String datoFIn = datoDos.format(jcFechaFinMoto.getDate());
-
-                if (modelMoto.getValueAt(filaSeleccionada, 3).toString() == "true") {
+                    String cliente = JOptionPane.showInputDialog("Ingrese cedula del cliente");
 
                     for (Cliente cli : gestionUsuario.getClientes()) {
 
@@ -2522,12 +2521,12 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "El vehiculo ya esta alquilado");
+                    JOptionPane.showMessageDialog(null, "Debe registrar la fecha");
                 }
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Debe registrar la fecha");
+                JOptionPane.showMessageDialog(null, "El vehiculo ya esta alquilado");
             }
 
         }

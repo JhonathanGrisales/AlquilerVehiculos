@@ -111,7 +111,7 @@ public class ExpotarPdf {
                 tabla.addCell(String.valueOf(veh.getKm()));
                 tabla.addCell(String.valueOf(veh.getValorAlquiler())).setBackgroundColor(ColorConstants.GREEN);
                 tabla.addCell(String.valueOf(veh.getClass().getSimpleName()));
-                tabla.addCell("Alquilado");
+                tabla.addCell("Libre");
 
             } else {
 
@@ -119,7 +119,7 @@ public class ExpotarPdf {
                 tablaDos.addCell(String.valueOf(veh.getKm()));
                 tablaDos.addCell(String.valueOf(veh.getValorAlquiler()));
                 tablaDos.addCell(String.valueOf(veh.getClass().getSimpleName())).setBackgroundColor(ColorConstants.RED);
-                tablaDos.addCell("Libre");
+                tablaDos.addCell("Alquilado");
             }
 
         }

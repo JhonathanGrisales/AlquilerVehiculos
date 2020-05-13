@@ -307,7 +307,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+              <AbsoluteConstraints x="30" y="0" width="745" height="-1"/>
             </Constraint>
           </Constraints>
 
@@ -316,8 +316,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane9" pref="553" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="jScrollPane9" pref="705" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -349,7 +349,7 @@
                         <Column editable="false" title="Usuario de alquiler" type="java.lang.String"/>
                         <Column editable="false" title="Fecha Alquiler" type="java.lang.String"/>
                         <Column editable="false" title="Fecha Entrega" type="java.lang.String"/>
-                        <Column editable="false" title="Title 7" type="java.lang.Integer"/>
+                        <Column editable="false" title="Dias de Alquiler" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -802,7 +802,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
+                      <EmptySpace pref="61" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
