@@ -36,51 +36,56 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Listar Vehiculos"/>
                   </Properties>
-                  <SubComponents>
-                    <MenuItem class="javax.swing.JMenuItem" name="mnuListarCoches">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Listar Coches"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuListarCochesActionPerformed"/>
-                      </Events>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="mnuListarMotos">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Listar Motos"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuListarMotosActionPerformed"/>
-                      </Events>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="mnuListarfurgonetas">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Listar Furgonetas"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuListarfurgonetasActionPerformed"/>
-                      </Events>
-                    </MenuItem>
-                  </SubComponents>
                 </Menu>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuListarfurgonetas">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Listar Furgonetas"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuListarfurgonetasActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuListarMotos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Listar Motos"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuListarMotosActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuListarCoches">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Listar Coches"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuListarCochesActionPerformed"/>
+                  </Events>
+                </MenuItem>
               </SubComponents>
             </Menu>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuCrearUsuario">
+            <Menu class="javax.swing.JMenu" name="jMenu1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Crear Usuario"/>
+                <Property name="text" type="java.lang.String" value="Gestion Usuarios"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCrearUsuarioActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuRegistrarCliente">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar Cliente "/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRegistrarClienteActionPerformed"/>
-              </Events>
-            </MenuItem>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuRegistrarCliente">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Registrar Cliente "/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRegistrarClienteActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="mnuCrearUsuario">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Crear Usuario"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCrearUsuarioActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="mnuInformeVehiculos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Informe Vehiculos"/>
@@ -122,6 +127,9 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1000, 550]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
@@ -143,7 +151,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="desktopPane" alignment="0" pref="805" max="32767" attributes="0"/>
+          <Component id="desktopPane" alignment="0" pref="1000" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -172,7 +180,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="190" y="80" width="460" height="310"/>
+              <AbsoluteConstraints x="250" y="80" width="460" height="310"/>
             </Constraint>
           </Constraints>
 
@@ -292,6 +300,9 @@
             <Property name="maximizable" type="boolean" value="true"/>
             <Property name="resizable" type="boolean" value="true"/>
             <Property name="title" type="java.lang.String" value="Vehiculos en alquiler"/>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[600, 400]"/>
+            </Property>
             <Property name="visible" type="boolean" value="false"/>
           </Properties>
           <Constraints>
@@ -304,9 +315,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane9" pref="553" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Component id="jScrollPane9" min="-2" pref="381" max="-2" attributes="0"/>
-                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -315,7 +326,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jScrollPane9" min="-2" pref="254" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace pref="88" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -331,10 +342,14 @@
                 <Component class="javax.swing.JTable" name="tblVehiculosEnAlquiler">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="0">
+                      <Table columnCount="7" rowCount="0">
                         <Column editable="false" title="Matricula Vehiculo" type="java.lang.String"/>
                         <Column editable="false" title="ID Cliente" type="java.lang.String"/>
+                        <Column editable="false" title="Restricciones Cliente" type="java.lang.String"/>
                         <Column editable="false" title="Usuario de alquiler" type="java.lang.String"/>
+                        <Column editable="false" title="Fecha Alquiler" type="java.lang.String"/>
+                        <Column editable="false" title="Fecha Entrega" type="java.lang.String"/>
+                        <Column editable="false" title="Title 7" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -456,7 +471,7 @@
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="306" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="65" max="32767" attributes="0"/>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -618,159 +633,176 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="30" width="-1" height="-1"/>
+              <AbsoluteConstraints x="20" y="10" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane2" min="-2" pref="452" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnAlquilarMoto" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnDevolver" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtKmRecorrido" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtValorCancelar" min="-2" pref="98" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnMotoCancelado" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace pref="104" max="32767" attributes="0"/>
-                              <Component id="btnEliminarMoto" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace pref="13" max="32767" attributes="0"/>
-                              <Component id="btnModificarMotos" min="-2" pref="108" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnGuardarMoto" min="-2" pref="124" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblValorAlquiler1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblMatricula1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblValorAlquiler1" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblKmCarro1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="2" attributes="0">
+                                          <Component id="txtKmMoto" alignment="2" min="-2" pref="66" max="-2" attributes="0"/>
+                                          <Component id="txtValorAlquilerMoto" alignment="2" min="-2" pref="66" max="-2" attributes="0"/>
+                                          <Component id="txtMatriculaMoto" alignment="2" min="-2" pref="66" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lblExtrasCarro1" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblEstadoCarro1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMatricula1" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="txtValorAlquilerMoto" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtMatriculaMoto" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtKmMoto" alignment="1" min="-2" pref="70" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Component id="btnNoCasco" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnSiCasco" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnMotoDisponible" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnMotoNoDisponible" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Component id="btnGuardarMoto" min="-2" pref="124" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnSiCasco" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnNoCasco" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnMotoDisponible" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnMotoNoDisponible" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnEliminarMoto" min="-2" pref="108" max="-2" attributes="0"/>
+                                  <Component id="btnModificarMotos" min="-2" pref="108" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="452" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="btnAlquilarMoto" alignment="2" pref="146" max="32767" attributes="0"/>
+                          <Component id="cbxRestricciones" alignment="2" max="32767" attributes="0"/>
+                          <Component id="jLabel22" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcFechaInicioMoto" alignment="2" min="-2" pref="144" max="-2" attributes="0"/>
+                          <Component id="jLabel23" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcFechaFinMoto" alignment="2" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="btnDevolver" alignment="2" min="-2" pref="97" max="-2" attributes="0"/>
+                          <Component id="txtValorCancelar" alignment="2" min="-2" pref="98" max="-2" attributes="0"/>
+                          <Component id="txtKmRecorrido" alignment="2" min="-2" pref="98" max="-2" attributes="0"/>
+                          <Component id="jLabel20" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel21" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnMotoCancelado" alignment="2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblMatricula1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtMatriculaMoto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblValorAlquiler1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtValorAlquilerMoto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblKmCarro1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtKmMoto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblExtrasCarro1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnSiCasco" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnNoCasco" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblEstadoCarro1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnMotoDisponible" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnMotoNoDisponible" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane2" pref="210" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnGuardarMoto" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnEliminarMoto" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <Component id="btnModificarMotos" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane2" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="lblMatricula1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lblValorAlquiler1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <Component id="lblKmCarro1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="txtMatriculaMoto" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                                      <Component id="txtValorAlquilerMoto" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="btnSiCasco" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="btnNoCasco" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="btnModificarMotos" min="-2" pref="36" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="3" attributes="0">
+                                                          <Component id="btnMotoDisponible" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="btnEliminarMoto" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="btnMotoNoDisponible" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="txtKmMoto" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="btnGuardarMoto" min="-2" pref="36" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="lblExtrasCarro1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                                              <Component id="lblEstadoCarro1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel20" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                                  <Component id="jLabel21" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnAlquilarMoto" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="btnDevolver" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="txtKmRecorrido" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="txtValorCancelar" alignment="3" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnMotoCancelado" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel20" min="-2" pref="19" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtKmRecorrido" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel21" min="-2" pref="19" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtValorCancelar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnMotoCancelado" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="cbxRestricciones" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jcFechaInicioMoto" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jcFechaFinMoto" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -828,6 +860,9 @@
             <Component class="javax.swing.JTextField" name="txtMatriculaMoto">
             </Component>
             <Component class="javax.swing.JTextField" name="txtValorAlquilerMoto">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtValorAlquilerMotoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="btnSiCasco">
               <Properties>
@@ -955,6 +990,35 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMotoCanceladoActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cbxRestricciones">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="N/A"/>
+                    <StringItem index="1" value="Vision"/>
+                    <StringItem index="2" value="Auditiva"/>
+                    <StringItem index="3" value="Edad"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel22">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha Alquiler*:"/>
+              </Properties>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="jcFechaInicioMoto">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel23">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha Entrega*:"/>
+              </Properties>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="jcFechaFinMoto">
             </Component>
           </SubComponents>
         </Container>
@@ -1532,7 +1596,10 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane8" min="-2" pref="311" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtCantidadUsuarios" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="311" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -1565,7 +1632,9 @@
                               <Component id="jScrollPane8" min="-2" pref="308" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="41" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtCantidadUsuarios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1655,6 +1724,8 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarClienteActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JTextField" name="txtCantidadUsuarios">
+            </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -1665,12 +1736,15 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="970" height="470"/>
+              <AbsoluteConstraints x="0" y="0" width="1200" height="470"/>
             </Constraint>
           </Constraints>
         </Component>
         <Container class="javax.swing.JInternalFrame" name="jifInformeVehiculos">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+            </Property>
             <Property name="closable" type="boolean" value="true"/>
             <Property name="defaultCloseOperation" type="int" value="1"/>
             <Property name="iconifiable" type="boolean" value="true"/>
@@ -1689,24 +1763,29 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="pnlPestañas" min="-2" pref="532" max="-2" attributes="0"/>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="pnlPestañas" min="-2" pref="542" max="-2" attributes="0"/>
+                      <EmptySpace pref="58" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="pnlPestañas" min="-2" pref="298" max="-2" attributes="0"/>
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="pnlPestañas" min="-2" pref="350" max="-2" attributes="0"/>
+                      <EmptySpace pref="45" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
             <Container class="javax.swing.JTabbedPane" name="pnlPesta&#xf1;as">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
               <SubComponents>
@@ -1726,6 +1805,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tblVehiculosDisponibles">
                       <Properties>
+                        <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
                             <Column editable="false" title="Matricula" type="java.lang.String"/>
@@ -1836,31 +1916,33 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane6" min="-2" pref="394" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Component id="txtFiltro" min="-2" pref="64" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtFiltro" min="-2" pref="64" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="btnInforme" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane6" min="-2" pref="496" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Component id="jScrollPane6" min="-2" pref="233" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtFiltro" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnInforme" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1897,6 +1979,17 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFiltroActionPerformed"/>
                         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFiltroKeyTyped"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JToggleButton" name="btnInforme">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="14" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="GENERAR INFORME"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInformeActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

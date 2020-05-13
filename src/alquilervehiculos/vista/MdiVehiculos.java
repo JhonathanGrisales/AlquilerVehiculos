@@ -18,15 +18,26 @@ import alquilervehiculos.modelo.Usuario;
 import alquilervehiculos.modelo.VehiculoAble;
 
 import alquilervehiculos.utilidades.EscribirArchivoPlano;
+import alquilervehiculos.utilidades.ExpotarPdf;
 import alquilervehiculos.utilidades.LeerCsv;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Table;
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import java.beans.PropertyVetoException;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -173,6 +184,11 @@ public class MdiVehiculos extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         btnMotoCancelado = new javax.swing.JButton();
+        cbxRestricciones = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        jcFechaInicioMoto = new com.toedter.calendar.JDateChooser();
+        jLabel23 = new javax.swing.JLabel();
+        jcFechaFinMoto = new com.toedter.calendar.JDateChooser();
         jifCrearUsuario = new javax.swing.JInternalFrame();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -219,6 +235,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
         btnRegistrarCliente = new javax.swing.JToggleButton();
         btnModificarCliente = new javax.swing.JButton();
         btnEliminarCliente = new javax.swing.JButton();
+        txtCantidadUsuarios = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jifInformeVehiculos = new javax.swing.JInternalFrame();
         pnlPestañas = new javax.swing.JTabbedPane();
@@ -231,21 +248,24 @@ public class MdiVehiculos extends javax.swing.JFrame {
         tblTodosLosVehiculos = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
+        btnInforme = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
         mnuMenuAlquiler = new javax.swing.JMenu();
         mnuVehiculos = new javax.swing.JMenu();
         mnuListarVehiculos = new javax.swing.JMenu();
-        mnuListarCoches = new javax.swing.JMenuItem();
-        mnuListarMotos = new javax.swing.JMenuItem();
         mnuListarfurgonetas = new javax.swing.JMenuItem();
-        mnuCrearUsuario = new javax.swing.JMenuItem();
+        mnuListarMotos = new javax.swing.JMenuItem();
+        mnuListarCoches = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         mnuRegistrarCliente = new javax.swing.JMenuItem();
+        mnuCrearUsuario = new javax.swing.JMenuItem();
         mnuInformeVehiculos = new javax.swing.JMenuItem();
         mnuVehiculosEnAlquiler = new javax.swing.JMenuItem();
         mnuCerrarSesion = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 550));
 
         desktopPane.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -325,7 +345,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
         );
 
         desktopPane.add(jifLogin);
-        jifLogin.setBounds(190, 80, 460, 310);
+        jifLogin.setBounds(250, 80, 460, 310);
 
         jifVehiculosEnAlquiler.setClosable(true);
         jifVehiculosEnAlquiler.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -333,6 +353,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
         jifVehiculosEnAlquiler.setMaximizable(true);
         jifVehiculosEnAlquiler.setResizable(true);
         jifVehiculosEnAlquiler.setTitle("Vehiculos en alquiler");
+        jifVehiculosEnAlquiler.setPreferredSize(new java.awt.Dimension(600, 400));
         jifVehiculosEnAlquiler.setVisible(false);
 
         tblVehiculosEnAlquiler.setModel(new javax.swing.table.DefaultTableModel(
@@ -340,14 +361,14 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Matricula Vehiculo", "ID Cliente", "Usuario de alquiler"
+                "Matricula Vehiculo", "ID Cliente", "Restricciones Cliente", "Usuario de alquiler", "Fecha Alquiler", "Fecha Entrega", "Title 7"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -366,20 +387,20 @@ public class MdiVehiculos extends javax.swing.JFrame {
         jifVehiculosEnAlquilerLayout.setHorizontalGroup(
             jifVehiculosEnAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jifVehiculosEnAlquilerLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                .addGap(21, 21, 21))
         );
         jifVehiculosEnAlquilerLayout.setVerticalGroup(
             jifVehiculosEnAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jifVehiculosEnAlquilerLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifVehiculosEnAlquiler);
-        jifVehiculosEnAlquiler.setBounds(0, 0, 463, 343);
+        jifVehiculosEnAlquiler.setBounds(0, 0, 600, 400);
 
         jifCoches.setClosable(true);
         jifCoches.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -545,7 +566,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
                             .addComponent(btnModificarCoche, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnElimicarCoche, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifCoches);
@@ -583,6 +604,12 @@ public class MdiVehiculos extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tblMotos);
+
+        txtValorAlquilerMoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorAlquilerMotoActionPerformed(evt);
+            }
+        });
 
         btnCasco.add(btnSiCasco);
         btnSiCasco.setText("Si");
@@ -654,127 +681,148 @@ public class MdiVehiculos extends javax.swing.JFrame {
             }
         });
 
+        cbxRestricciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A", "Vision", "Auditiva", "Edad" }));
+
+        jLabel22.setText("Fecha Alquiler*:");
+
+        jLabel23.setText("Fecha Entrega*:");
+
         javax.swing.GroupLayout jifMotosLayout = new javax.swing.GroupLayout(jifMotos.getContentPane());
         jifMotos.getContentPane().setLayout(jifMotosLayout);
         jifMotosLayout.setHorizontalGroup(
             jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jifMotosLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jifMotosLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jifMotosLayout.createSequentialGroup()
-                                .addComponent(btnAlquilarMoto)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDevolver)
-                                .addGap(18, 18, 18)
                                 .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKmRecorrido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20))
+                                    .addComponent(lblMatricula1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblValorAlquiler1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblKmCarro1, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
+                                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(txtKmMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtValorAlquilerMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMatriculaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtValorCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jifMotosLayout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(jLabel21))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jifMotosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnMotoCancelado)
-                        .addGap(97, 97, 97)))
-                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jifMotosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                        .addComponent(btnEliminarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(btnModificarMotos, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jifMotosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))
-                    .addGroup(jifMotosLayout.createSequentialGroup()
+                                    .addComponent(lblExtrasCarro1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblEstadoCarro1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(6, 6, 6))
+                            .addGroup(jifMotosLayout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(btnGuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSiCasco)
+                            .addComponent(btnNoCasco)
+                            .addComponent(btnMotoDisponible)
+                            .addComponent(btnMotoNoDisponible))
                         .addGap(18, 18, 18)
                         .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblValorAlquiler1)
-                            .addGroup(jifMotosLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblKmCarro1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblExtrasCarro1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblEstadoCarro1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblMatricula1, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(18, 18, 18)
-                                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jifMotosLayout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtValorAlquilerMoto, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtMatriculaMoto, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtKmMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(btnNoCasco)
-                                    .addComponent(btnSiCasco)
-                                    .addComponent(btnMotoDisponible)
-                                    .addComponent(btnMotoNoDisponible))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnEliminarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnModificarMotos, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jifMotosLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)))
+                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnAlquilarMoto, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(cbxRestricciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel22)
+                    .addComponent(jcFechaInicioMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(jcFechaFinMoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValorCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtKmRecorrido, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21)
+                    .addComponent(btnMotoCancelado))
+                .addGap(19, 19, 19))
         );
         jifMotosLayout.setVerticalGroup(
             jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jifMotosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jifMotosLayout.createSequentialGroup()
-                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMatricula1)
-                            .addComponent(txtMatriculaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblValorAlquiler1)
-                            .addComponent(txtValorAlquilerMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblKmCarro1)
-                            .addComponent(txtKmMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblExtrasCarro1)
-                            .addComponent(btnSiCasco))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNoCasco)
-                        .addGap(10, 10, 10)
-                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblEstadoCarro1)
-                            .addComponent(btnMotoDisponible))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMotoNoDisponible))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jifMotosLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEliminarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModificarMotos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jifMotosLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(lblMatricula1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblValorAlquiler1)
+                                .addGap(11, 11, 11)
+                                .addComponent(lblKmCarro1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jifMotosLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jifMotosLayout.createSequentialGroup()
+                                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jifMotosLayout.createSequentialGroup()
+                                                .addComponent(txtMatriculaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(9, 9, 9)
+                                                .addComponent(txtValorAlquilerMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jifMotosLayout.createSequentialGroup()
+                                                .addComponent(btnSiCasco)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnNoCasco))
+                                            .addComponent(btnModificarMotos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jifMotosLayout.createSequentialGroup()
+                                                .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(btnMotoDisponible)
+                                                    .addComponent(btnEliminarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnMotoNoDisponible))
+                                            .addGroup(jifMotosLayout.createSequentialGroup()
+                                                .addComponent(txtKmMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnGuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jifMotosLayout.createSequentialGroup()
+                                        .addComponent(lblExtrasCarro1)
+                                        .addGap(53, 53, 53)
+                                        .addComponent(lblEstadoCarro1))))))
                     .addGroup(jifMotosLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAlquilarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKmRecorrido)
-                            .addComponent(txtValorCancelar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMotoCancelado)
-                        .addGap(19, 19, 19))))
+                            .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jifMotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jifMotosLayout.createSequentialGroup()
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtKmRecorrido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtValorCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnMotoCancelado))
+                            .addGroup(jifMotosLayout.createSequentialGroup()
+                                .addComponent(cbxRestricciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jcFechaInicioMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jcFechaFinMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifMotos);
-        jifMotos.setBounds(20, 30, 832, 378);
+        jifMotos.setBounds(20, 10, 813, 457);
 
         jifCrearUsuario.setClosable(true);
         jifCrearUsuario.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1188,7 +1236,9 @@ public class MdiVehiculos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jifRegistrarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCantidadUsuarios)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jifRegistrarClienteLayout.setVerticalGroup(
@@ -1213,16 +1263,19 @@ public class MdiVehiculos extends javax.swing.JFrame {
                     .addGroup(jifRegistrarClienteLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCantidadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifRegistrarCliente);
-        jifRegistrarCliente.setBounds(60, 30, 593, 403);
+        jifRegistrarCliente.setBounds(60, 30, 593, 419);
 
         jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Jhonathan_G\\Desktop\\Programación 1\\Proyecto final\\9914-azul-liso.jpg")); // NOI18N
         desktopPane.add(jLabel8);
-        jLabel8.setBounds(0, 0, 970, 470);
+        jLabel8.setBounds(0, 0, 1200, 470);
 
+        jifInformeVehiculos.setBackground(new java.awt.Color(204, 204, 204));
         jifInformeVehiculos.setClosable(true);
         jifInformeVehiculos.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         jifInformeVehiculos.setIconifiable(true);
@@ -1231,6 +1284,9 @@ public class MdiVehiculos extends javax.swing.JFrame {
         jifInformeVehiculos.setToolTipText("");
         jifInformeVehiculos.setVisible(false);
 
+        pnlPestañas.setBackground(new java.awt.Color(0, 0, 0));
+
+        tblVehiculosDisponibles.setAutoCreateRowSorter(true);
         tblVehiculosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1325,31 +1381,42 @@ public class MdiVehiculos extends javax.swing.JFrame {
             }
         });
 
+        btnInforme.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnInforme.setText("GENERAR INFORME");
+        btnInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInformeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnInforme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(187, 187, 187))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInforme))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         pnlPestañas.addTab("Todos Los vehiculos", jInternalFrame1);
@@ -1359,20 +1426,20 @@ public class MdiVehiculos extends javax.swing.JFrame {
         jifInformeVehiculosLayout.setHorizontalGroup(
             jifInformeVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jifInformeVehiculosLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(pnlPestañas, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(pnlPestañas, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jifInformeVehiculosLayout.setVerticalGroup(
             jifInformeVehiculosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jifInformeVehiculosLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(pnlPestañas, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(pnlPestañas, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifInformeVehiculos);
-        jifInformeVehiculos.setBounds(0, 0, 608, 388);
+        jifInformeVehiculos.setBounds(0, 0, 672, 460);
 
         mnuMenuAlquiler.setMnemonic('f');
         mnuMenuAlquiler.setText("Archivo");
@@ -1381,22 +1448,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
         mnuVehiculos.setText("Vehiculos");
 
         mnuListarVehiculos.setText("Listar Vehiculos");
-
-        mnuListarCoches.setText("Listar Coches");
-        mnuListarCoches.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuListarCochesActionPerformed(evt);
-            }
-        });
-        mnuListarVehiculos.add(mnuListarCoches);
-
-        mnuListarMotos.setText("Listar Motos");
-        mnuListarMotos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuListarMotosActionPerformed(evt);
-            }
-        });
-        mnuListarVehiculos.add(mnuListarMotos);
+        mnuVehiculos.add(mnuListarVehiculos);
 
         mnuListarfurgonetas.setText("Listar Furgonetas");
         mnuListarfurgonetas.addActionListener(new java.awt.event.ActionListener() {
@@ -1404,19 +1456,27 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 mnuListarfurgonetasActionPerformed(evt);
             }
         });
-        mnuListarVehiculos.add(mnuListarfurgonetas);
+        mnuVehiculos.add(mnuListarfurgonetas);
 
-        mnuVehiculos.add(mnuListarVehiculos);
+        mnuListarMotos.setText("Listar Motos");
+        mnuListarMotos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuListarMotosActionPerformed(evt);
+            }
+        });
+        mnuVehiculos.add(mnuListarMotos);
+
+        mnuListarCoches.setText("Listar Coches");
+        mnuListarCoches.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuListarCochesActionPerformed(evt);
+            }
+        });
+        mnuVehiculos.add(mnuListarCoches);
 
         mnuMenuAlquiler.add(mnuVehiculos);
 
-        mnuCrearUsuario.setText("Crear Usuario");
-        mnuCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCrearUsuarioActionPerformed(evt);
-            }
-        });
-        mnuMenuAlquiler.add(mnuCrearUsuario);
+        jMenu1.setText("Gestion Usuarios");
 
         mnuRegistrarCliente.setText("Registrar Cliente ");
         mnuRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -1424,7 +1484,17 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 mnuRegistrarClienteActionPerformed(evt);
             }
         });
-        mnuMenuAlquiler.add(mnuRegistrarCliente);
+        jMenu1.add(mnuRegistrarCliente);
+
+        mnuCrearUsuario.setText("Crear Usuario");
+        mnuCrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCrearUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuCrearUsuario);
+
+        mnuMenuAlquiler.add(jMenu1);
 
         mnuInformeVehiculos.setText("Informe Vehiculos");
         mnuInformeVehiculos.addActionListener(new java.awt.event.ActionListener() {
@@ -1468,7 +1538,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1555,10 +1625,11 @@ public class MdiVehiculos extends javax.swing.JFrame {
             tblClintes.getColumnModel().getColumn(2).setPreferredWidth(0);
         }
         tblClintes.setModel(modeloCliente);
+        int cantidadUsuarios = modeloCliente.getRowCount();
+        txtCantidadUsuarios.setText("Usuarios registrados:  " + cantidadUsuarios);
+
     }
-    
-    
-    
+
     private void pintarVehiculosEnAlquiler() {
 
         DefaultTableModel modelo = (DefaultTableModel) tblVehiculosEnAlquiler.getModel();
@@ -1567,11 +1638,10 @@ public class MdiVehiculos extends javax.swing.JFrame {
         for (AlquilaVehiculo alquila : gestionVehiculo.getAlquilaVehiculos()) {
 
             modelo.addRow(alquila.obtenerArregloObjeto());
-            
+
         }
         tblVehiculosEnAlquiler.setModel(modelo);
     }
-
 
     private void pintarUsuario() {
 
@@ -1757,50 +1827,6 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnGuardarCocheActionPerformed
 
-    private void btnGuardarMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarMotoActionPerformed
-
-        if (btnSiCasco.isSelected()) {
-            casco = true;
-        } else if (btnNoCasco.isSelected()) {
-            casco = false;
-        }
-
-        if (btnMotoDisponible.isSelected()) {
-            estadoMoto = true;
-        } else if (btnMotoNoDisponible.isSelected()) {
-            estadoMoto = false;
-
-        }
-
-        if (txtMatriculaMoto.getText() == null || txtMatriculaMoto.getText().compareTo("") == 0) {
-
-            JOptionPane.showMessageDialog(this, "Debe diligenciar la matricula de la moto ", "Datos Faltantes", 2);
-
-        } else if (txtKmMoto.getText() == null || txtKmMoto.getText().compareTo("") == 0) {
-            JOptionPane.showMessageDialog(this, "Debe diligenciar  los Kms de la Moto ", "Datos Faltantes", 2);
-        } else if (txtValorAlquilerMoto.getText() == null || txtValorAlquilerMoto.getText().compareTo("") == 0) {
-            JOptionPane.showMessageDialog(this, "Debe diligenciar el valor del alquiler ", "Datos Faltantes", 2);
-
-        } else if (btnEstadoMoto.getSelection() == null || btnCasco.getSelection() == null) {
-
-            JOptionPane.showMessageDialog(this, "Debe marcar la casilla de estado y casco ", "Datos Faltantes", 2);
-        } else {
-            AbstractVehiculo moto = new Moto(casco, txtMatriculaMoto.getText().toUpperCase(), Integer.parseInt(txtKmMoto.getText()),
-                    estadoMoto, Double.parseDouble(txtValorAlquilerMoto.getText()));
-
-            gestionVehiculo.adicionarMotos(moto);
-            pintarMotos();
-            //LIMPIAR PANTALLA DESPUES DE AGREGAR MOTO
-
-            txtMatriculaMoto.setText("");
-            txtKmMoto.setText("");
-            txtValorAlquilerMoto.setText("");
-            btnEstadoMoto.clearSelection();
-            btnCasco.clearSelection();
-
-        }
-    }//GEN-LAST:event_btnGuardarMotoActionPerformed
-
     private void btnNoDisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoDisponibleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnNoDisponibleActionPerformed
@@ -1960,64 +1986,6 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private void txtMatriculaCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaCarroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMatriculaCarroActionPerformed
-
-    private void btnEliminarMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMotoActionPerformed
-        // ELIMINAR MOTO
-
-        DefaultTableModel modelMoto = (DefaultTableModel) tblMotos.getModel();
-
-        int fila = tblMotos.getSelectedRow();
-        if (fila >= 0) {
-
-            modelMoto.removeRow(fila);
-
-            JOptionPane.showMessageDialog(this, "Registro eliminado");
-
-        } else {
-            JOptionPane.showMessageDialog(this, "No se seleciono nigun elemento");
-        }
-
-        try {
-            SobreescribirListaMotos();
-            gestionVehiculo.llenarVehiculos();
-            pintarMotos();
-
-//           
-        } catch (IOException ex) {
-            System.out.println("ERROR: Ocurrio un problema al eliminar el archivo!" + ex.getMessage());
-        }
-
-
-    }//GEN-LAST:event_btnEliminarMotoActionPerformed
-
-    private void btnModificarMotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMotosActionPerformed
-        // MODIFICAR MOTO
-
-        DefaultTableModel modeloMoto = (DefaultTableModel) tblMotos.getModel();
-        int filaSleccionada = tblMotos.getSelectedRow();
-        if (filaSleccionada >= 0) {
-
-            txtMatriculaMoto.setText(tblMotos.getValueAt(filaSleccionada, 1).toString());
-            txtValorAlquilerMoto.setText(tblMotos.getValueAt(filaSleccionada, 4).toString());
-            txtKmCarro.setText(tblMotos.getValueAt(filaSleccionada, 2).toString());
-
-            modeloMoto.removeRow(filaSleccionada);
-
-            try {
-                SobreescribirListaMotos();
-                gestionVehiculo.llenarVehiculos();
-                pintarMotos();
-
-            } catch (IOException ex) {
-                System.out.println("ERROR: Ocurrio un problema al modificar el archivo!" + ex.getMessage());
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(this, "No se seleciono nigun elemento");
-        }
-
-
-    }//GEN-LAST:event_btnModificarMotosActionPerformed
 
     private void mnuInformeVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInformeVehiculosActionPerformed
         // INFORME VEHICULOS 
@@ -2291,6 +2259,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
             txtCedulaCliente.setText("");
             txtNombreCliente.setText("");
         }
+        ;
 
 
     }//GEN-LAST:event_btnRegistrarClienteActionPerformed
@@ -2379,11 +2348,18 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private void mnuRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarClienteActionPerformed
         // MENU REGISTRAR CLIENTE 
 
+        DefaultTableModel modeloCliente = (DefaultTableModel) tblClintes.getModel();
+        modeloCliente.getDataVector().removeAllElements();
+
         gestionUsuario.llenarClientes();
         //LLENAR TABLA CLIENTES
         pintarCliente();
         jifRegistrarCliente.repaint();
         jifRegistrarCliente.show();
+
+        int cantidadUsuarios = modeloCliente.getRowCount();
+        txtCantidadUsuarios.setText("Usuarios registrados:  " + cantidadUsuarios);
+
         //Maximizar el listado   
         if (jifRegistrarCliente.isIcon()) {
 
@@ -2397,59 +2373,38 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mnuRegistrarClienteActionPerformed
 
-    private void btnAlquilarMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilarMotoActionPerformed
-        // ALQUILAR MOTO
 
-        DefaultTableModel modelMoto = (DefaultTableModel) tblMotos.getModel();
-        int filaSeleccionada = tblMotos.getSelectedRow();
+    private void mnuVehiculosEnAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVehiculosEnAlquilerActionPerformed
+        // MENU VEHICULOS EN ALQUILER 
 
-        if (filaSeleccionada >= 0) {
+        gestionVehiculo.llenarAlquilerArchivoPlano();
+        pintarVehiculosEnAlquiler();
+        jifVehiculosEnAlquiler.show();
+        jifVehiculosEnAlquiler.repaint();
 
-            String cliente = JOptionPane.showInputDialog("Ingrese cedula del cliente");
+        //Maximizar 
+        if (jifVehiculosEnAlquiler.isIcon()) {
 
-            if (modelMoto.getValueAt(filaSeleccionada, 3).toString() == "true") {
-
-                gestionUsuario.llenarClientes();
-
-                OUTERMOST: for (Cliente cli : gestionUsuario.getClientes()) {
-
-                    if (cli.getCedula() == null ? cliente == null : cli.getCedula().equals(cliente)) {
-
-                        AlquilaVehiculo alquila = new AlquilaVehiculo((String) tblMotos.getValueAt(filaSeleccionada, 1), cli.getCedula(), usuarioAutenticado.getNombre());
-                        gestionVehiculo.llenarAlquiler(alquila);
-
-                        JOptionPane.showMessageDialog(null, "Vehiculo de placa:" + "  " + (String) tblMotos.getValueAt(filaSeleccionada, 1) + "  Alquilado al señor: " + "  " + cli.getNombre());
-                        
-
-                        modelMoto.setValueAt(false, filaSeleccionada, 3);
-
-                        try {
-
-                            SobreescribirListaMotos();
-                            gestionVehiculo.llenarVehiculos();
-                            pintarMotos();
-                        } catch (IOException ex) {
-                            Logger.getLogger(MdiVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        
-                           break OUTERMOST;
-
-                    } else {
-                        
-                        JOptionPane.showMessageDialog(null, "USUARIO NO ENCONTRADO");
-                        
-                        break OUTERMOST;
-                    }
-                } 
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "El vehiculo ya esta alquilado");
+            try {
+                jifVehiculosEnAlquiler.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(MdiVehiculos.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-    }//GEN-LAST:event_btnAlquilarMotoActionPerformed
 
+
+    }//GEN-LAST:event_mnuVehiculosEnAlquilerActionPerformed
+
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroActionPerformed
+
+    private void btnMotoCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMotoCanceladoActionPerformed
+        //SETEAR VALOTRES MOTO
+
+        txtKmRecorrido.setText("");
+        txtValorCancelar.setText("");
+    }//GEN-LAST:event_btnMotoCanceladoActionPerformed
 
     private void btnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverActionPerformed
         // DEVOLVER CARRO
@@ -2514,41 +2469,204 @@ public class MdiVehiculos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No ha seleccionado nada");
         }
 
-
     }//GEN-LAST:event_btnDevolverActionPerformed
 
-    private void btnMotoCanceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMotoCanceladoActionPerformed
-        //SETEAR VALOTRES MOTO 
-        
-        txtKmRecorrido.setText("");
-        txtValorCancelar.setText("");
-    }//GEN-LAST:event_btnMotoCanceladoActionPerformed
+    private void btnAlquilarMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilarMotoActionPerformed
+        // ALQUILAR MOTO
 
-    private void mnuVehiculosEnAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuVehiculosEnAlquilerActionPerformed
-        // MENU VEHICULOS EN ALQUILER 
-        
-       
-       gestionVehiculo.llenarAlquilerArchivoPlano();
-        pintarVehiculosEnAlquiler();
-        jifVehiculosEnAlquiler.show();
-        jifVehiculosEnAlquiler.repaint();
+        gestionUsuario.llenarClientes();
 
-        //Maximizar 
-        if (jifVehiculosEnAlquiler.isIcon()) {
+        DefaultTableModel modelMoto = (DefaultTableModel) tblMotos.getModel();
+        int filaSeleccionada = tblMotos.getSelectedRow();
+
+        if (jcFechaInicioMoto.getDate() != null && jcFechaFinMoto.getDate() != null) {
+
+            if (filaSeleccionada >= 0) {
+
+                String cliente = JOptionPane.showInputDialog("Ingrese cedula del cliente");
+
+                DateFormat dato = new SimpleDateFormat("dd-MM-yyy");
+                String datoInicio = dato.format(jcFechaInicioMoto.getDate());
+
+                DateFormat datoDos = new SimpleDateFormat("dd-MM-yyy");
+                String datoFIn = datoDos.format(jcFechaFinMoto.getDate());
+
+                if (modelMoto.getValueAt(filaSeleccionada, 3).toString() == "true") {
+
+                    for (Cliente cli : gestionUsuario.getClientes()) {
+
+                        if (cli.getCedula().equals(cliente) == true) {
+
+                            int dias = calcularDias(jcFechaInicioMoto, jcFechaFinMoto);
+
+                            AlquilaVehiculo alquila = new AlquilaVehiculo((String) tblMotos.getValueAt(filaSeleccionada, 1), cli.getCedula(),
+                                    cbxRestricciones.getSelectedItem().toString(), usuarioAutenticado.getNombre(), datoInicio, datoFIn, dias);
+
+                            gestionVehiculo.llenarAlquiler(alquila);
+
+                            JOptionPane.showMessageDialog(null, "Vehiculo de placa:" + "  " + (String) tblMotos.getValueAt(filaSeleccionada, 1) + "  Alquilado al señor: " + "  " + cli.getNombre());
+
+                            modelMoto.setValueAt(false, filaSeleccionada, 3);
+
+                            try {
+
+                                SobreescribirListaMotos();
+                                gestionVehiculo.llenarVehiculos();
+                                pintarMotos();
+                            } catch (IOException ex) {
+                                Logger.getLogger(MdiVehiculos.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                        }
+                    }
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "El vehiculo ya esta alquilado");
+                }
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Debe registrar la fecha");
+            }
+
+        }
+    }//GEN-LAST:event_btnAlquilarMotoActionPerformed
+
+    public int calcularDias(JDateChooser jcFechaInicioMoto, JDateChooser jcFechaFinMoto) {
+
+        Calendar inicio = jcFechaInicioMoto.getCalendar();
+        Calendar fin = jcFechaFinMoto.getCalendar();
+        int dias = -1;
+
+        while (inicio.before(fin) || inicio.equals(fin)) {
+
+            dias++;
+            inicio.add(Calendar.DATE, 1);
+        }
+        return dias;
+
+    }
+
+    private void btnModificarMotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMotosActionPerformed
+        // MODIFICAR MOTO
+
+        DefaultTableModel modeloMoto = (DefaultTableModel) tblMotos.getModel();
+        int filaSleccionada = tblMotos.getSelectedRow();
+        if (filaSleccionada >= 0) {
+
+            txtMatriculaMoto.setText(tblMotos.getValueAt(filaSleccionada, 1).toString());
+            txtValorAlquilerMoto.setText(tblMotos.getValueAt(filaSleccionada, 4).toString());
+            txtKmCarro.setText(tblMotos.getValueAt(filaSleccionada, 2).toString());
+
+            modeloMoto.removeRow(filaSleccionada);
 
             try {
-                jifVehiculosEnAlquiler.setMaximum(true);
-            } catch (PropertyVetoException ex) {
-                Logger.getLogger(MdiVehiculos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-        
-    }//GEN-LAST:event_mnuVehiculosEnAlquilerActionPerformed
+                SobreescribirListaMotos();
+                gestionVehiculo.llenarVehiculos();
+                pintarMotos();
 
-    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+            } catch (IOException ex) {
+                System.out.println("ERROR: Ocurrio un problema al modificar el archivo!" + ex.getMessage());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se seleciono nigun elemento");
+        }
+
+    }//GEN-LAST:event_btnModificarMotosActionPerformed
+
+    private void btnEliminarMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMotoActionPerformed
+        // ELIMINAR MOTO
+
+        DefaultTableModel modelMoto = (DefaultTableModel) tblMotos.getModel();
+
+        int fila = tblMotos.getSelectedRow();
+        if (fila >= 0) {
+
+            modelMoto.removeRow(fila);
+
+            JOptionPane.showMessageDialog(this, "Registro eliminado");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se seleciono nigun elemento");
+        }
+
+        try {
+            SobreescribirListaMotos();
+            gestionVehiculo.llenarVehiculos();
+            pintarMotos();
+
+            //
+        } catch (IOException ex) {
+            System.out.println("ERROR: Ocurrio un problema al eliminar el archivo!" + ex.getMessage());
+        }
+
+    }//GEN-LAST:event_btnEliminarMotoActionPerformed
+
+    private void btnGuardarMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarMotoActionPerformed
+
+        if (btnSiCasco.isSelected()) {
+            casco = true;
+        } else if (btnNoCasco.isSelected()) {
+            casco = false;
+        }
+
+        if (btnMotoDisponible.isSelected()) {
+            estadoMoto = true;
+        } else if (btnMotoNoDisponible.isSelected()) {
+            estadoMoto = false;
+
+        }
+
+        if (txtMatriculaMoto.getText() == null || txtMatriculaMoto.getText().compareTo("") == 0) {
+
+            JOptionPane.showMessageDialog(this, "Debe diligenciar la matricula de la moto ", "Datos Faltantes", 2);
+
+        } else if (txtKmMoto.getText() == null || txtKmMoto.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(this, "Debe diligenciar  los Kms de la Moto ", "Datos Faltantes", 2);
+        } else if (txtValorAlquilerMoto.getText() == null || txtValorAlquilerMoto.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(this, "Debe diligenciar el valor del alquiler ", "Datos Faltantes", 2);
+
+        } else if (btnEstadoMoto.getSelection() == null || btnCasco.getSelection() == null) {
+
+            JOptionPane.showMessageDialog(this, "Debe marcar la casilla de estado y casco ", "Datos Faltantes", 2);
+        } else {
+            AbstractVehiculo moto = new Moto(casco, txtMatriculaMoto.getText().toUpperCase(), Integer.parseInt(txtKmMoto.getText()),
+                    estadoMoto, Double.parseDouble(txtValorAlquilerMoto.getText()));
+
+            gestionVehiculo.adicionarMotos(moto);
+            pintarMotos();
+            //LIMPIAR PANTALLA DESPUES DE AGREGAR MOTO
+
+            txtMatriculaMoto.setText("");
+            txtKmMoto.setText("");
+            txtValorAlquilerMoto.setText("");
+            btnEstadoMoto.clearSelection();
+            btnCasco.clearSelection();
+
+        }
+    }//GEN-LAST:event_btnGuardarMotoActionPerformed
+
+    private void txtValorAlquilerMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorAlquilerMotoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFiltroActionPerformed
+    }//GEN-LAST:event_txtValorAlquilerMotoActionPerformed
+
+    private void btnInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformeActionPerformed
+        // INFORME
+
+        try {
+            // TODO add your handling code here:
+            ExpotarPdf ejemplo = new ExpotarPdf();
+            ejemplo.crearDocumentoPdf("src/informes.pdf",
+                    gestionVehiculo.obtenerVehiculos("Vehiculos"));
+            ejemplo.abrirDocumento("src/informes.pdf");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+
+    }//GEN-LAST:event_btnInformeActionPerformed
 
     public void SobreescribirListaFurgonestas() throws IOException {
 
@@ -2689,6 +2807,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private javax.swing.JRadioButton btnFurgonNoDisponible;
     private javax.swing.JButton btnGuardarCoche;
     private javax.swing.JButton btnGuardarMoto;
+    private javax.swing.JToggleButton btnInforme;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnModificarCoche;
@@ -2705,6 +2824,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private javax.swing.JRadioButton btnSi;
     private javax.swing.JRadioButton btnSiCasco;
     private javax.swing.JComboBox<String> cboTipoUsuario;
+    private javax.swing.JComboBox<String> cbxRestricciones;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JInternalFrame jInternalFrame1;
@@ -2722,6 +2842,8 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2729,6 +2851,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2738,6 +2861,8 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private com.toedter.calendar.JDateChooser jcFechaFinMoto;
+    private com.toedter.calendar.JDateChooser jcFechaInicioMoto;
     private javax.swing.JInternalFrame jifCoches;
     private javax.swing.JInternalFrame jifCrearUsuario;
     private javax.swing.JInternalFrame jifFurgonetas;
@@ -2778,6 +2903,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private javax.swing.JTable tblVehiculosDisponibles;
     private javax.swing.JTable tblVehiculosEnAlquiler;
     private javax.swing.JTable tblVehiculosNoDisponibles;
+    private javax.swing.JTextField txtCantidadUsuarios;
     private javax.swing.JTextField txtCapacidad;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCedulaCliente;

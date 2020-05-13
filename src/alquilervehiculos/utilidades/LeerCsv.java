@@ -314,7 +314,7 @@ public class LeerCsv {
 
                 String[] datos = linea.split(","); //La linea que se lea que se separe por ;
 
-               AlquilaVehiculo alquila = new AlquilaVehiculo(datos[0], datos[1], datos[2]);
+               AlquilaVehiculo alquila = new AlquilaVehiculo(datos[0], datos[1],datos[2], datos[3],datos[4],datos[5],Integer.parseInt(datos[6]));
 
                 listado.add(alquila);
 
