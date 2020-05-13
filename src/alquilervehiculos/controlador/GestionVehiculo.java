@@ -6,7 +6,7 @@
 package alquilervehiculos.controlador;
 
 import alquilervehiculos.modelo.AbstractVehiculo;
-import alquilervehiculos.modelo.AlquilaVehiculo;
+import alquilervehiculos.modelo.AlquilarVehiculo;
 
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Furgoneta;
@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
 public class GestionVehiculo implements Serializable {
 
     private List<AbstractVehiculo> vehiculos;
-    private List<AlquilaVehiculo> alquilaVehiculos;
+    private List<AlquilarVehiculo> alquilarVehiculos;
 
     public GestionVehiculo() {
 
@@ -48,16 +48,16 @@ public class GestionVehiculo implements Serializable {
     }
     
     
-    public void llenarAlquiler(AlquilaVehiculo alquiler){
+    public void llenarAlquiler(AlquilarVehiculo alquiler){
         
-        alquilaVehiculos.add(alquiler);
-        EscribirArchivoPlano.ExportarAlquiler(alquilaVehiculos);
+        alquilarVehiculos.add(alquiler);
+        EscribirArchivoPlano.ExportarAlquiler(alquilarVehiculos);
         
     }
     
     public void llenarAlquilerArchivoPlano(){
         
-        alquilaVehiculos = LeerCsv.cargarAlquiler();
+        alquilarVehiculos = LeerCsv.cargarAlquiler();
     }
 
     public List<AbstractVehiculo> getVehiculos() {
@@ -68,14 +68,14 @@ public class GestionVehiculo implements Serializable {
         this.vehiculos = vehiculos;
     }
 
-    public List<AlquilaVehiculo> getAlquilaVehiculos() {
-        return alquilaVehiculos;
+    public List<AlquilarVehiculo> getAlquilaVehiculos() {
+        return alquilarVehiculos;
     }
 
    
 
-    public void setAlquilaVehiculos(List<AlquilaVehiculo> alquilaVehiculos) {
-        this.alquilaVehiculos = alquilaVehiculos;
+    public void setAlquilaVehiculos(List<AlquilarVehiculo> alquilaVehiculos) {
+        this.alquilarVehiculos = alquilaVehiculos;
     }
 
     

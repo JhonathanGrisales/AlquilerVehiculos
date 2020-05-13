@@ -7,7 +7,7 @@ package alquilervehiculos.utilidades;
 
 import alquilervehiculos.controlador.GestionVehiculo;
 import alquilervehiculos.modelo.AbstractVehiculo;
-import alquilervehiculos.modelo.AlquilaVehiculo;
+import alquilervehiculos.modelo.AlquilarVehiculo;
 import alquilervehiculos.modelo.Cliente;
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Furgoneta;
@@ -129,13 +129,13 @@ public class EscribirArchivoPlano {
 
     }
     
-    public static void ExportarAlquiler(List<AlquilaVehiculo> alquiler) {
+    public static void ExportarAlquiler(List<AlquilarVehiculo> alquiler) {
 
         
 
         CsvWriter csvWriter = new CsvWriter("src/alquiler.txt");
         
-        for (AlquilaVehiculo alquila : alquiler) {
+        for (AlquilarVehiculo alquila : alquiler) {
 
             String[] datos = alquila.getArray();
 

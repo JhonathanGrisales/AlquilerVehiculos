@@ -6,7 +6,7 @@
 package alquilervehiculos.utilidades;
 
 import alquilervehiculos.modelo.AbstractVehiculo;
-import alquilervehiculos.modelo.AlquilaVehiculo;
+import alquilervehiculos.modelo.AlquilarVehiculo;
 import alquilervehiculos.modelo.Cliente;
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Furgoneta;
@@ -107,7 +107,6 @@ public class LeerCsv {
 //
 //        return listado;
 //    }
-
 //     public static List<AbstractVehiculo> cargarMotos() {
 //        List<AbstractVehiculo> listado = new ArrayList<>(); //Declarando listado de usuarios inicia vacio
 //        File archivo = null; //Objeto de tipo archivos
@@ -148,7 +147,6 @@ public class LeerCsv {
 //
 //        return listado;
 //    }
-
     public static List<AbstractVehiculo> cargarCoches() {
         List<AbstractVehiculo> listado = new ArrayList<>(); //Declarando listado de usuarios inicia vacio
         File archivo = null; //Objeto de tipo archivos
@@ -165,8 +163,6 @@ public class LeerCsv {
             while ((linea = br.readLine()) != null) { //Mientras alla una linea para leer
 
                 String[] datos = linea.split(","); //La linea que se lea que se separe por ;
-                
-                
 
                 Coche coche = new Coche(Boolean.parseBoolean(datos[0]),
                         datos[1],
@@ -188,7 +184,7 @@ public class LeerCsv {
                 e2.printStackTrace();
             }
         }
-        
+
         try {
             archivo = new File("src/motos.txt"); //Carpeta Raiz de proyecto 
             fr = new FileReader(archivo);
@@ -220,7 +216,7 @@ public class LeerCsv {
                 e2.printStackTrace();
             }
         }
-        
+
         try {
             archivo = new File("src/furgonetas.txt"); //Carpeta Raiz de proyecto 
             fr = new FileReader(archivo);
@@ -252,13 +248,11 @@ public class LeerCsv {
                 e2.printStackTrace();
             }
         }
-        
 
         return listado;
     }
-    
-    
-   public static List<Cliente> cargarClientes(TipoUsuario[] tipos) {
+
+    public static List<Cliente> cargarClientes(TipoUsuario[] tipos) {
         List<Cliente> listado = new ArrayList<>(); //Declarando listado de usuarios inicia vacio
         File archivo = null; //Objeto de tipo archivos
         FileReader fr = null; //Objeto filereader permite leer archivos de disco 
@@ -275,10 +269,8 @@ public class LeerCsv {
 
                 String[] datos = linea.split(","); //La linea que se lea que se separe por ;
 
-                
                 Cliente cliente = new Cliente(datos[0], datos[1], tipos[Integer.parseInt(datos[2]) - 1]);
-                        
-             
+
                 listado.add(cliente);
 
             }
@@ -295,10 +287,10 @@ public class LeerCsv {
         }
 
         return listado;
-    }  
-   
-   public static List<AlquilaVehiculo> cargarAlquiler() {
-        List<AlquilaVehiculo> listado = new ArrayList<>(); //Declarando listado de usuarios inicia vacio
+    }
+
+    public static List<AlquilarVehiculo> cargarAlquiler() {
+        List<AlquilarVehiculo> listado = new ArrayList<>(); //Declarando listado de usuarios inicia vacio
         File archivo = null; //Objeto de tipo archivos
         FileReader fr = null; //Objeto filereader permite leer archivos de disco 
         BufferedReader br = null; //Objeto que permite llevar esos datos a la memoria ram 
@@ -314,13 +306,13 @@ public class LeerCsv {
 
                 String[] datos = linea.split(","); //La linea que se lea que se separe por ;
 
-               AlquilaVehiculo alquila = new AlquilaVehiculo(datos[0], datos[1],datos[2], datos[3],datos[4],datos[5],Integer.parseInt(datos[6]));
+                AlquilarVehiculo alquila = new AlquilarVehiculo(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], Integer.parseInt(datos[6]));
 
                 listado.add(alquila);
 
             }
         } catch (Exception e) {
-//            System.out.println("El archivo no existe ALQUILER = " + e.getMessage());
+            System.out.println("El archivo no existe ALQUILER = " + e.getMessage());
         } finally {
             try {
                 if (null != fr) {
@@ -333,5 +325,5 @@ public class LeerCsv {
 
         return listado;
     }
-    
+
 }

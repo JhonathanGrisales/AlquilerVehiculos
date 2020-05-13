@@ -8,7 +8,7 @@ package alquilervehiculos.vista;
 import alquilervehiculos.controlador.GestionUsuario;
 import alquilervehiculos.controlador.GestionVehiculo;
 import alquilervehiculos.modelo.AbstractVehiculo;
-import alquilervehiculos.modelo.AlquilaVehiculo;
+import alquilervehiculos.modelo.AlquilarVehiculo;
 import alquilervehiculos.modelo.Cliente;
 import alquilervehiculos.modelo.Coche;
 import alquilervehiculos.modelo.Furgoneta;
@@ -57,7 +57,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
     private GestionUsuario gestionUsuario;
     private Usuario usuarioAutenticado;
     private GestionVehiculo gestionVehiculo;
-    private AlquilaVehiculo alquilavehiculo;
+    private AlquilarVehiculo alquilarvehiculo;
     private boolean extras;
     private boolean estado;
     private boolean casco;
@@ -1635,7 +1635,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tblVehiculosEnAlquiler.getModel();
         modelo.getDataVector().removeAllElements();
 
-        for (AlquilaVehiculo alquila : gestionVehiculo.getAlquilaVehiculos()) {
+        for (AlquilarVehiculo alquila : gestionVehiculo.getAlquilaVehiculos()) {
 
             modelo.addRow(alquila.obtenerArregloObjeto());
 
@@ -2259,7 +2259,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
             txtCedulaCliente.setText("");
             txtNombreCliente.setText("");
         }
-        ;
+        
 
 
     }//GEN-LAST:event_btnRegistrarClienteActionPerformed
@@ -2420,7 +2420,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                     if (vehiculoAlquilado.getMatricula() == modelMoto.getValueAt(filaSeleccionada, 1)) {
 
-                        alquilavehiculo = new AlquilaVehiculo(vehiculoAlquilado, usuarioAutenticado, vehiculoAlquilado.getKm());
+                        alquilarvehiculo = new AlquilarVehiculo(vehiculoAlquilado, usuarioAutenticado, vehiculoAlquilado.getKm());
 
                         int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
 
@@ -2433,7 +2433,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             
 
-                            double valorAlquilrer = alquilavehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
+                            double valorAlquilrer = alquilarvehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
                             txtKmRecorrido.setText("" + kmRecorridos);
                             txtValorCancelar.setText("" + valorAlquilrer);
 
@@ -2497,7 +2497,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             int dias = calcularDias(jcFechaInicioMoto, jcFechaFinMoto);
 
-                            AlquilaVehiculo alquila = new AlquilaVehiculo((String) tblMotos.getValueAt(filaSeleccionada, 1), cli.getCedula(),
+                            AlquilarVehiculo alquila = new AlquilarVehiculo((String) tblMotos.getValueAt(filaSeleccionada, 1), cli.getCedula(),
                                     cbxRestricciones.getSelectedItem().toString(), usuarioAutenticado.getNombre(), datoInicio, datoFIn, dias);
 
                             gestionVehiculo.llenarAlquiler(alquila);
