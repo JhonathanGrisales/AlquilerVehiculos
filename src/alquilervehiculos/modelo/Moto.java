@@ -63,7 +63,7 @@ public class Moto extends AbstractVehiculo implements Serializable{
     @Override
     public double calcularAlquiler(int kmRecorridos) {
 
-       return 5000 *kmRecorridos;
+       return 5000 * (double)kmRecorridos;
     }
 
     //Areglo de objetos para meter en la tabla 

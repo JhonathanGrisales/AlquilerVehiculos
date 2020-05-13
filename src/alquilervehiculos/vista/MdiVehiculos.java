@@ -2431,12 +2431,11 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             int kmRecorridos = kmFinales - vehiculoAlquilado.getKm();
 
-                            double valorAlquiler;
-                            valorAlquiler = 0;
+                            
 
-                            valorAlquiler = alquilavehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
+                            double valorAlquilrer = alquilavehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
                             txtKmRecorrido.setText("" + kmRecorridos);
-                            txtValorCancelar.setText("" + valorAlquiler);
+                            txtValorCancelar.setText("" + valorAlquilrer);
 
                             modelMoto.setValueAt(kmFinales, filaSeleccionada, 2);
 
