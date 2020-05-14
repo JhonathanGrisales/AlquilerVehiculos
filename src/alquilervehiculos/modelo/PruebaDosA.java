@@ -9,8 +9,6 @@ package alquilervehiculos.modelo;
  *
  * @author Jhonathan_G
  */
-public class prueba {
-    
-    
+public class PruebaDosA {
     
 }
