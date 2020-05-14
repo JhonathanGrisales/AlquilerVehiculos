@@ -22,6 +22,8 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="btnEstadoRecepcionMoto">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="btnGestionCobroCoche">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuMenuAlquiler">
@@ -377,7 +379,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="30" width="857" height="435"/>
+              <AbsoluteConstraints x="30" y="10" width="935" height="450"/>
             </Constraint>
           </Constraints>
 
@@ -386,14 +388,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="btnGuardarCoche" min="-2" pref="147" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnModificarCoche" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnElimicarCoche" min="-2" pref="120" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="344" max="-2" attributes="0"/>
                               <Component id="btnAbrirDocumentoCoche" min="-2" pref="122" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -437,72 +439,61 @@
                                   </Group>
                                   <Component id="jScrollPane1" alignment="0" min="-2" pref="523" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jTabbedPane2" min="-2" pref="348" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="227" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jScrollPane1" min="-2" pref="227" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="2" attributes="0">
-                                          <Component id="txtMatriculaCarro" alignment="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblExtrasCarro" alignment="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblEstadoCarro" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="2" attributes="0">
-                                          <Component id="txtKmCarro" alignment="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnSi" alignment="2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnDisponible" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jTabbedPane2" min="-2" pref="272" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="lblMatricula" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMatriculaCarro" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblExtrasCarro" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEstadoCarro" alignment="2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="lblKmCarro" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtKmCarro" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnSi" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnDisponible" alignment="2" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="lblValorAlquiler" alignment="2" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtValorAlquilerCarro" alignment="2" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnNo" alignment="2" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnNoDisponible" alignment="2" min="-2" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="247" pref="247" max="-2" attributes="0"/>
-                              <Component id="lblMatricula" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="278" pref="278" max="-2" attributes="0"/>
-                              <Component id="lblKmCarro" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="309" pref="309" max="-2" attributes="0"/>
-                              <Component id="lblValorAlquiler" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnGuardarCoche" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <Component id="btnModificarCoche" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                  <Component id="btnElimicarCoche" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="2" attributes="0">
+                                          <Component id="btnGuardarCoche" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
+                                          <Component id="btnModificarCoche" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
+                                          <Component id="btnElimicarCoche" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="btnAbrirDocumentoCoche" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="47" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jTabbedPane2" min="-2" pref="290" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnAbrirDocumentoCoche" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -723,7 +714,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="btnAlquilarCoche" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace pref="52" max="32767" attributes="0"/>
+                              <EmptySpace pref="70" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -791,30 +782,33 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnPinturaCoche" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnPinturaCoche" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnKitCarreteraCoche" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnEspejosCoche" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtValorCancelarCoche" alignment="0" pref="199" max="32767" attributes="0"/>
-                                          <Component id="txtKmRecorridoCoche" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btnCocheCancelado" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnCobroDiasCoche" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnCobroKmsCoche" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                       <Component id="btnDevolveCoche" min="-2" pref="123" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnCobroDiasCoche" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="2" attributes="0">
+                                          <Component id="txtValorCancelarCoche" alignment="2" pref="199" max="32767" attributes="0"/>
+                                          <Component id="txtKmRecorridoCoche" alignment="2" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnCocheCancelado" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -834,19 +828,21 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnCobroDiasCoche" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnCocheCancelado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtKmRecorridoCoche" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnCocheCancelado" max="32767" attributes="0"/>
+                                  <Component id="txtKmRecorridoCoche" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtValorCancelarCoche" min="-2" pref="28" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnPinturaCoche" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnKitCarreteraCoche" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnEspejosCoche" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="17" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -855,7 +851,7 @@
                     <Component class="javax.swing.JRadioButton" name="btnCobroKmsCoche">
                       <Properties>
                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="btnGestiosCobro"/>
+                          <ComponentRef name="btnGestionCobroCoche"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Por Km"/>
                       </Properties>
@@ -863,7 +859,7 @@
                     <Component class="javax.swing.JRadioButton" name="btnCobroDiasCoche">
                       <Properties>
                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                          <ComponentRef name="btnGestiosCobro"/>
+                          <ComponentRef name="btnGestionCobroCoche"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Por d&#xed;as"/>
                       </Properties>
@@ -908,6 +904,11 @@
                         <Property name="text" type="java.lang.String" value="ESPEJOS"/>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel28">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Check list * :"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -937,7 +938,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="10" width="-1" height="-1"/>
+              <AbsoluteConstraints x="20" y="10" width="872" height="450"/>
             </Constraint>
           </Constraints>
 
@@ -960,22 +961,22 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblMatricula1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtMatriculaMoto" min="-2" pref="66" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblKmCarro1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtKmMoto" min="-2" pref="66" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
                                       <Component id="lblValorAlquiler1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtValorAlquilerMoto" min="-2" pref="66" max="-2" attributes="0"/>
+                                      <Component id="txtValorAlquilerMoto" min="-2" pref="87" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblKmCarro1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtKmMoto" min="-2" pref="87" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblMatricula1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtMatriculaMoto" min="-2" pref="87" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblExtrasCarro1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnSiCasco" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -983,11 +984,13 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnMotoDisponible" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnMotoNoDisponible" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblEstadoCarro1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btnMotoDisponible" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblEstadoCarro1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                                       <Component id="jTabbedPane1" min="-2" pref="348" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -997,7 +1000,7 @@
                               <Component id="jScrollPane2" min="-2" pref="452" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1015,36 +1018,36 @@
                                   <Component id="lblExtrasCarro1" alignment="2" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblEstadoCarro1" alignment="2" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="btnSiCasco" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                          <Component id="btnNoCasco" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="btnMotoDisponible" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                          <Component id="btnMotoNoDisponible" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtKmMoto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblKmCarro1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtValorAlquilerMoto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblValorAlquiler1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTabbedPane1" min="-2" pref="272" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnSiCasco" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                  <Component id="btnNoCasco" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnMotoDisponible" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                  <Component id="btnMotoNoDisponible" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtKmMoto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblKmCarro1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtValorAlquilerMoto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblValorAlquiler1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jTabbedPane1" min="-2" pref="286" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1054,7 +1057,7 @@
                           <Component id="btnEliminarMoto" alignment="2" min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="btnAbrirDocumento" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1271,7 +1274,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="btnAlquilarMoto" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace pref="52" max="32767" attributes="0"/>
+                              <EmptySpace pref="66" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1343,7 +1346,7 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="btnPINTURA" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnPinturaMoto" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnHerramientaMoto" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1364,6 +1367,10 @@
                                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                       <Component id="btnDevolver" min="-2" pref="123" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -1381,20 +1388,22 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnCobroDiasMoto" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnMotoCancelado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtKmRecorrido" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="btnMotoCancelado" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtKmRecorrido" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtValorCancelar" min="-2" pref="28" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtValorCancelar" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnPINTURA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnPinturaMoto" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnHerramientaMoto" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnEspejosMoto" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="20" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1441,7 +1450,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMotoCanceladoActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JRadioButton" name="btnPINTURA">
+                    <Component class="javax.swing.JRadioButton" name="btnPinturaMoto">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="PINTURA"/>
                       </Properties>
@@ -1454,6 +1463,11 @@
                     <Component class="javax.swing.JRadioButton" name="btnEspejosMoto">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="ESPEJOS"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel29">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Check list * :"/>
                       </Properties>
                     </Component>
                   </SubComponents>
