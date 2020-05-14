@@ -1,5 +1,5 @@
-true,XLL80,15565,true,5000.0
+true,XLL80,15565,false,5000.0
 true,FAZ12A,8005,true,5000.0
 true,TYU15A,25558,true,5000.0
-true,DRT895,1569,false,5000.0
-false,ERG89A,18,false,5000.0
+true,DRT895,1570,true,5000.0
+false,ERG89A,25,true,5000.0

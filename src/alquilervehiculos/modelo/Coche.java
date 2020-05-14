@@ -69,7 +69,7 @@ public class Coche extends AbstractVehiculo implements Serializable{
     public double calcularAlquiler(int km) {
         
         
-        return 5000 *(double)km;
+        return 1000 *(double)km;
     }
     
     //Areglo de objetos para meter en la tabla 
