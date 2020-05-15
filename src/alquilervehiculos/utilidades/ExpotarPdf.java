@@ -104,7 +104,7 @@ public class ExpotarPdf {
         
         for (AbstractVehiculo veh : vehiculos) {
 
-//            tabla.startNewRow();
+
             if (veh.isEstado() == true) {
 
                 tabla.addCell(veh.getMatricula());

@@ -65,7 +65,7 @@ public class Furgoneta extends AbstractVehiculo implements Serializable{
     @Override
     public double calcularAlquiler(int km) {
        
-        return calcularAlquiler(km);
+        return 40000 *(double)km;
     }
 
     @Override

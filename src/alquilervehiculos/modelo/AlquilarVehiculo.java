@@ -11,20 +11,19 @@ import java.io.Serializable;
  *
  * @author Jhonathan_G
  */
-public class AlquilarVehiculo implements Serializable{
-    
-    
+public class AlquilarVehiculo implements Serializable {
+
     public AbstractVehiculo vehiculo;
     public Usuario usuario;
 
-    public int kmFinales;
     public String cedulaCliente;
     public String fechaInicio;
     public String fechaFin;
-    public int diasAlquiler;
     public String matricula;
     public String restricciones;
     public String usuarioAlquiler;
+    public int diasAlquiler;
+    public int kmFinales;
 
     public AlquilarVehiculo(AbstractVehiculo vehiculo, Usuario usuario, int kmFinales) {
         this.vehiculo = vehiculo;
@@ -129,13 +128,12 @@ public class AlquilarVehiculo implements Serializable{
     }
 
     public double calcularAlquiler(AbstractVehiculo vehiculo, Usuario usuario, int kmRecorridos) {
-        
-       double valorAlquiler = 0;
+
+        double valorAlquiler = 0;
 
         if (vehiculo instanceof Moto) {
 
 //            double valorAlquiler;
-
             if (((Moto) vehiculo).isCasco()) {
 
                 valorAlquiler = vehiculo.calcularAlquiler(kmRecorridos) + 5000;
@@ -144,7 +142,7 @@ public class AlquilarVehiculo implements Serializable{
 
                 valorAlquiler = vehiculo.calcularAlquiler(kmRecorridos);
             }
-            
+
             return valorAlquiler;
 
         } else if (vehiculo instanceof Coche) {
@@ -165,17 +163,13 @@ public class AlquilarVehiculo implements Serializable{
         } else if (vehiculo instanceof Furgoneta) {
 
             double incrementoCapacidad = (((Furgoneta) vehiculo).getCapacidad() * 10000);
-             valorAlquiler = vehiculo.calcularAlquiler(kmRecorridos) + incrementoCapacidad;
+            valorAlquiler = vehiculo.calcularAlquiler(kmRecorridos) + incrementoCapacidad;
 
             return valorAlquiler;
 
         }
         return valorAlquiler;
-        
-        
-      
-        
-        
+
     }
 
     public Object[] obtenerArregloObjeto() {
@@ -193,5 +187,5 @@ public class AlquilarVehiculo implements Serializable{
         return datos;
 
     }
-    
+
 }

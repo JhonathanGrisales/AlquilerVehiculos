@@ -119,18 +119,7 @@ public class GestionVehiculo implements Serializable {
 
     }
 
-//    public boolean eliminarCoche(AbstractVehiculo vehiculo){
-//        
-//       for (AbstractVehiculo coche : vehiculos) {
-//           
-//           if (vehiculo.getMatricula() == )
-//       }
-//
-//            
-//        
-//        
-//    }
-/// Adicionar Coches 
+ 
     public void adicionarCoches(AbstractVehiculo coche) {
 
         if (ValidarExitenciaCarro(coche)) {
