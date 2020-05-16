@@ -56,6 +56,7 @@ public class EnviarCorreo {
             message.setText(mensaje);
   
             Transport.send(message);
+            
   
             System.out.println("Mensaje enviado a :  " + receptor);
                         return true;
