@@ -133,7 +133,7 @@ public class AlquilarVehiculo implements Serializable {
 
         if (vehiculo instanceof Moto) {
 
-//            double valorAlquiler;
+
             if (((Moto) vehiculo).isCasco()) {
 
                 valorAlquiler = vehiculo.calcularAlquiler(kmRecorridos) + 5000;
@@ -162,7 +162,7 @@ public class AlquilarVehiculo implements Serializable {
 
         } else if (vehiculo instanceof Furgoneta) {
 
-            double incrementoCapacidad = (((Furgoneta) vehiculo).getCapacidad() * 10000);
+            double incrementoCapacidad = (((Furgoneta) vehiculo).getCapacidad() * 3000);
             valorAlquiler = vehiculo.calcularAlquiler(kmRecorridos) + incrementoCapacidad;
 
             return valorAlquiler;

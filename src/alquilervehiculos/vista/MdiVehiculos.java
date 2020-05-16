@@ -17,6 +17,8 @@ import alquilervehiculos.modelo.TipoUsuario;
 import alquilervehiculos.modelo.Usuario;
 import alquilervehiculos.modelo.VehiculoAble;
 
+import alquilervehiculos.utilidades.EnviarCorreo;
+
 import alquilervehiculos.utilidades.EscribirArchivoPlano;
 import alquilervehiculos.utilidades.ExpotarPdf;
 import alquilervehiculos.utilidades.LeerCsv;
@@ -26,6 +28,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Table;
 import com.toedter.calendar.JDateChooser;
+import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -49,11 +52,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ButtonModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -1341,11 +1351,11 @@ public class MdiVehiculos extends javax.swing.JFrame {
                     .addGroup(jifCrearUsuarioLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifCrearUsuario);
-        jifCrearUsuario.setBounds(50, 10, 816, 475);
+        jifCrearUsuario.setBounds(50, 10, 816, 487);
 
         jifFurgonetas.setClosable(true);
         jifFurgonetas.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1646,7 +1656,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
                         .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCargaMasivaFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jifFurgonetasLayout.setVerticalGroup(
             jifFurgonetasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1816,11 +1826,11 @@ public class MdiVehiculos extends javax.swing.JFrame {
                             .addComponent(btnModificarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(txtCantidadUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifRegistrarCliente);
-        jifRegistrarCliente.setBounds(60, 30, 565, 447);
+        jifRegistrarCliente.setBounds(60, 30, 565, 451);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Portada.png"))); // NOI18N
         desktopPane.add(jLabel8);
@@ -2118,7 +2128,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
             String md5 = bi.toString(16);
             return md5;
         } catch (UnsupportedEncodingException ex) {
-            System.out.println("No Encripta" + ex); 
+            System.out.println("No Encripta" + ex);
         }
         return null;
 
@@ -2127,9 +2137,6 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-       
-        
-                
         if (txtUsuario.getText() == null || txtUsuario.getText().compareTo("") == 0) {
 
             JOptionPane.showMessageDialog(this, "Debe diligenciar el usuario ", "Datos Faltantes", 2);
@@ -2944,6 +2951,16 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 } else if (btnCobroDiasMoto.isSelected()) {
 
                     int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
+
+                    ///////////////////////// sleep //////////////////////
+                    try {
+                        //Ponemos a "Dormir" el programa durante los ms que queremos
+                        Thread.sleep(2 * 1000);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                    ////////////////////////// sleep ///////////////////////////////////// 
                     int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
 
                     double valorAlquiler = dias * 15000;
@@ -2982,6 +2999,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnDevolverActionPerformed
 
+
     private void btnAlquilarMotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilarMotoActionPerformed
         // ALQUILAR MOTO
 
@@ -3014,7 +3032,14 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             gestionVehiculo.llenarAlquiler(alquila);
 
+                            String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
+                            String correoRemite = "jgrisalesg@gmail.com";
+                            String mensaje = "El vehiculo de placas : " + tblMotos.getValueAt(filaSeleccionada, 1) + "  tipo: " + "Motocicleta "
+                                    + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
+
                             JOptionPane.showMessageDialog(null, "Vehiculo de placa:" + "  " + (String) tblMotos.getValueAt(filaSeleccionada, 1) + "  Alquilado al señor: " + "  " + cli.getNombre());
+
+                            EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
 
                             modelMoto.setValueAt(false, filaSeleccionada, 3);
 
@@ -3030,6 +3055,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
                             }
 
                         }
+
                     }
 
                 } else {
@@ -3379,7 +3405,14 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             gestionVehiculo.llenarAlquiler(alquila);
 
+                            String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
+                            String correoRemite = "jgrisalesg@gmail.com";
+                            String mensaje = "El vehiculo de placas : " + tblCoches.getValueAt(filaSeleccionada, 1) + "  tipo: Coche "
+                                    + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
+
                             JOptionPane.showMessageDialog(null, "Vehiculo de placa:" + "  " + (String) tblCoches.getValueAt(filaSeleccionada, 1) + "  Alquilado al señor: " + "  " + cli.getNombre());
+
+                            EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
 
                             modelCoche.setValueAt(false, filaSeleccionada, 3);
 
@@ -3475,6 +3508,17 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 } else if (btnCobroDiasCoche.isSelected()) {
 
                     int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
+                    
+                    ///////////////////////// sleep //////////////////////
+                    try {
+                        //Ponemos a "Dormir" el programa durante los ms que queremos
+                        Thread.sleep(2 * 1000);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                    ////////////////////////// sleep ///////////////////////////////////// 
+                    
                     int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
 
                     double valorAlquiler = dias * 15000;
@@ -3619,7 +3663,14 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             gestionVehiculo.llenarAlquiler(alquila);
 
+                            String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
+                            String correoRemite = "jgrisalesg@gmail.com";
+                            String mensaje = "El vehiculo de placas : " + tblFurgonetas.getValueAt(filaSeleccionada, 1) + "  tipo: Furgon "
+                                    + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
+
                             JOptionPane.showMessageDialog(null, "Vehiculo de placa:" + "  " + (String) tblFurgonetas.getValueAt(filaSeleccionada, 1) + "  Alquilado al señor: " + "  " + cli.getNombre());
+
+                            EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
 
                             modelFurgon.setValueAt(false, filaSeleccionada, 3);
 
@@ -3712,6 +3763,17 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 } else if (btnCobroDiasFurgoneta.isSelected()) {
 
                     int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
+                    
+                    ///////////////////////// sleep //////////////////////
+                    try {
+                        //Ponemos a "Dormir" el programa durante los ms que queremos
+                        Thread.sleep(2 * 1000);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
+                    ////////////////////////// sleep ///////////////////////////////////// 
+                    
                     int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
 
                     double valorAlquiler = dias * 25000;
