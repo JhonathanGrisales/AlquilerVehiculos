@@ -1,2 +1,2 @@
-false,HUES885,15000,true,10000.0
-true,HHS626,17002,false,10000.0
+false,UES885,15000,true,10000.0
+true,HHS626,10,true,10000.0
