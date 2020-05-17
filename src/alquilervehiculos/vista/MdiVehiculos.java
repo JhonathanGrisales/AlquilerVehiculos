@@ -143,6 +143,10 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 mnuVehiculos.setVisible(true);
                 mnuListarCoches.setVisible(true);
                 mnuListarMotos.setVisible(true);
+                mnuListarfurgonetas.setVisible(true);
+                mnuRegistrarCliente.setVisible(true);
+                mnuInformeVehiculos.setVisible(true);
+                mnuVehiculosEnAlquiler.setVisible(true);
 
                 break;
         }
@@ -1136,7 +1140,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel35))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
             .addGroup(jifMotosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnGuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1196,7 +1200,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifMotos);
@@ -1700,7 +1704,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
                                                 .addComponent(btnModificarFuron, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         desktopPane.add(jifFurgonetas);
