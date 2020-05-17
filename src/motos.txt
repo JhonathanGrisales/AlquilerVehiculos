@@ -1,2 +1,2 @@
 false,DPJ91D,8700,false,5000.0
-true,XLL80A,5504,false,5000.0
+true,XLL80A,5505,true,5000.0

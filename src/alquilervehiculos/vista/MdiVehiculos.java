@@ -47,6 +47,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,6 +59,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.scene.input.DataFormat;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -482,7 +484,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
             jifVehiculosEnAlquilerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jifVehiculosEnAlquilerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jifVehiculosEnAlquilerLayout.setVerticalGroup(
@@ -794,7 +796,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
                 .addGroup(jifCochesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jifCochesLayout.createSequentialGroup()
                         .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                         .addComponent(btnAbrirDocumentoCoche, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1134,7 +1136,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel35))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(jifMotosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnGuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2891,7 +2893,7 @@ public class MdiVehiculos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMotoCanceladoActionPerformed
 
     private void btnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverActionPerformed
-        // DEVOLVER CARRO
+        // DEVOLVER MOTO
 
         DefaultTableModel modelMoto = (DefaultTableModel) tblMotos.getModel();
         int filaSeleccionada = tblMotos.getSelectedRow();
@@ -2910,33 +2912,40 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                                 alquilarvehiculo = new AlquilarVehiculo(vehiculoAlquilado, usuarioAutenticado, vehiculoAlquilado.getKm());
 
-                                int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
+                                try {
 
-                                if (kmFinales < vehiculoAlquilado.getKm()) {
+                                    int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
 
-                                    JOptionPane.showMessageDialog(null, "Erros en los Kms");
-                                } else {
+                                    if (kmFinales < vehiculoAlquilado.getKm()) {
 
-                                    int kmRecorridos = kmFinales - vehiculoAlquilado.getKm();
+                                        JOptionPane.showMessageDialog(null, "Erros en los Kms");
+                                    } else {
 
-                                    double valorAlquilrer = alquilarvehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
-                                    txtKmRecorrido.setText("Kms Recorridos : " + kmRecorridos);
-                                    txtValorCancelar.setText("Factura por : " + valorAlquilrer);
+                                        int kmRecorridos = kmFinales - vehiculoAlquilado.getKm();
 
-                                    modelMoto.setValueAt(kmFinales, filaSeleccionada, 2);
+                                        double valorAlquilrer = alquilarvehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
+                                        txtKmRecorrido.setText("Kms Recorridos : " + kmRecorridos);
+                                        txtValorCancelar.setText("Factura por : " + valorAlquilrer);
 
-                                    modelMoto.setValueAt(true, filaSeleccionada, 3);
+                                        modelMoto.setValueAt(kmFinales, filaSeleccionada, 2);
 
-                                    try {
-                                        SobreescribirListaMotos();
-                                        gestionVehiculo.llenarVehiculos();
-                                        pintarMotos();
+                                        modelMoto.setValueAt(true, filaSeleccionada, 3);
 
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(MdiVehiculos.class
-                                                .getName()).log(Level.SEVERE, null, ex);
+                                        try {
+                                            SobreescribirListaMotos();
+                                            gestionVehiculo.llenarVehiculos();
+                                            pintarMotos();
+
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(MdiVehiculos.class
+                                                    .getName()).log(Level.SEVERE, null, ex);
+
+                                        }
 
                                     }
+                                } catch (NumberFormatException e) {
+
+                                    JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN VALOR ", "ERROR", 2);
 
                                 }
 
@@ -2950,38 +2959,36 @@ public class MdiVehiculos extends javax.swing.JFrame {
                     }
                 } else if (btnCobroDiasMoto.isSelected()) {
 
-                    int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
-
-                    ///////////////////////// sleep //////////////////////
                     try {
-                        //Ponemos a "Dormir" el programa durante los ms que queremos
-                        Thread.sleep(2 * 1000);
-                    } catch (Exception e) {
-                        System.out.println(e);
+
+                        int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
+
+                        int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
+
+                        double valorAlquiler = dias * 15000;
+
+                        txtValorCancelar.setText("Factura por : " + valorAlquiler);
+                        txtKmRecorrido.setText("Dias Alquiler : " + dias);
+
+                        modelMoto.setValueAt(kmFinales, filaSeleccionada, 2);
+
+                        modelMoto.setValueAt(true, filaSeleccionada, 3);
+
+                        try {
+                            SobreescribirListaMotos();
+                            gestionVehiculo.llenarVehiculos();
+                            pintarMotos();
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(MdiVehiculos.class
+                                    .getName()).log(Level.SEVERE, null, ex);
+
+                        }
+                    } catch (NumberFormatException ex) {
+
+                        JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN VALOR ", "ERROR", 2);
                     }
 
-                    ////////////////////////// sleep ///////////////////////////////////// 
-                    int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
-
-                    double valorAlquiler = dias * 15000;
-
-                    txtValorCancelar.setText("Factura por : " + valorAlquiler);
-                    txtKmRecorrido.setText("Dias Alquiler : " + dias);
-
-                    modelMoto.setValueAt(kmFinales, filaSeleccionada, 2);
-
-                    modelMoto.setValueAt(true, filaSeleccionada, 3);
-
-                    try {
-                        SobreescribirListaMotos();
-                        gestionVehiculo.llenarVehiculos();
-                        pintarMotos();
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(MdiVehiculos.class
-                                .getName()).log(Level.SEVERE, null, ex);
-
-                    }
                 } else {
 
                     JOptionPane.showMessageDialog(null, "Dede seleccionar gestion de cobro");
@@ -3032,14 +3039,20 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             gestionVehiculo.llenarAlquiler(alquila);
 
-                            String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
-                            String correoRemite = "jgrisalesg@gmail.com";
-                            String mensaje = "El vehiculo de placas : " + tblMotos.getValueAt(filaSeleccionada, 1) + "  tipo: " + "Motocicleta "
-                                    + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
-
                             JOptionPane.showMessageDialog(null, "Vehiculo de placa:" + "  " + (String) tblMotos.getValueAt(filaSeleccionada, 1) + "  Alquilado al señor: " + "  " + cli.getNombre());
 
-                            EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
+                            try {
+
+                                String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
+                                String correoRemite = "jgrisalesg@gmail.com";
+                                String mensaje = "El vehiculo de placas : " + tblMotos.getValueAt(filaSeleccionada, 1) + "  tipo: " + "Motocicleta "
+                                        + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
+                                EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
+
+                            } catch (NullPointerException e) {
+
+                                JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN CORREO", "ERROR", 2);
+                            }
 
                             modelMoto.setValueAt(false, filaSeleccionada, 3);
 
@@ -3071,10 +3084,10 @@ public class MdiVehiculos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAlquilarMotoActionPerformed
 
-    public int calcularDias(JDateChooser jcFechaInicioMoto, JDateChooser jcFechaFinMoto) {
+    public int calcularDias(JDateChooser jcFechaInicio, JDateChooser jcFechaFin) {
 
-        Calendar inicio = jcFechaInicioMoto.getCalendar();
-        Calendar fin = jcFechaFinMoto.getCalendar();
+        Calendar inicio = jcFechaInicio.getCalendar();
+        Calendar fin = jcFechaFin.getCalendar();
         int dias = -1;
 
         while (inicio.before(fin) || inicio.equals(fin)) {
@@ -3405,14 +3418,20 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             gestionVehiculo.llenarAlquiler(alquila);
 
-                            String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
-                            String correoRemite = "jgrisalesg@gmail.com";
-                            String mensaje = "El vehiculo de placas : " + tblCoches.getValueAt(filaSeleccionada, 1) + "  tipo: Coche "
-                                    + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
+                            try {
+
+                                String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
+                                String correoRemite = "jgrisalesg@gmail.com";
+                                String mensaje = "El vehiculo de placas : " + tblCoches.getValueAt(filaSeleccionada, 1) + "  tipo: Coche "
+                                        + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
+                                EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
+
+                            } catch (NullPointerException e) {
+
+                                JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN CORREO ", "ERROR", 2);
+                            }
 
                             JOptionPane.showMessageDialog(null, "Vehiculo de placa:" + "  " + (String) tblCoches.getValueAt(filaSeleccionada, 1) + "  Alquilado al señor: " + "  " + cli.getNombre());
-
-                            EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
 
                             modelCoche.setValueAt(false, filaSeleccionada, 3);
 
@@ -3467,33 +3486,41 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                                 alquilarvehiculo = new AlquilarVehiculo(vehiculoAlquilado, usuarioAutenticado, vehiculoAlquilado.getKm());
 
-                                int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
+                                try {
 
-                                if (kmFinales < vehiculoAlquilado.getKm()) {
+                                    int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
 
-                                    JOptionPane.showMessageDialog(null, "Erros en los Kms");
-                                } else {
+                                    if (kmFinales < vehiculoAlquilado.getKm()) {
 
-                                    int kmRecorridos = kmFinales - vehiculoAlquilado.getKm();
+                                        JOptionPane.showMessageDialog(null, "Erros en los Kms");
+                                    } else {
 
-                                    double valorAlquilrer = alquilarvehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
-                                    txtKmRecorridoCoche.setText("Kms Recorridos : " + kmRecorridos);
-                                    txtValorCancelarCoche.setText("Factura por : " + valorAlquilrer);
+                                        int kmRecorridos = kmFinales - vehiculoAlquilado.getKm();
 
-                                    modelCoche.setValueAt(kmFinales, filaSeleccionada, 2);
+                                        double valorAlquilrer = alquilarvehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
+                                        txtKmRecorridoCoche.setText("Kms Recorridos : " + kmRecorridos);
+                                        txtValorCancelarCoche.setText("Factura por : " + valorAlquilrer);
 
-                                    modelCoche.setValueAt(true, filaSeleccionada, 3);
+                                        modelCoche.setValueAt(kmFinales, filaSeleccionada, 2);
 
-                                    try {
-                                        SobreescribirListaCoches();
-                                        gestionVehiculo.llenarVehiculos();
-                                        pintarCoches();
+                                        modelCoche.setValueAt(true, filaSeleccionada, 3);
 
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(MdiVehiculos.class
-                                                .getName()).log(Level.SEVERE, null, ex);
+                                        try {
+                                            SobreescribirListaCoches();
+                                            gestionVehiculo.llenarVehiculos();
+                                            pintarCoches();
+
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(MdiVehiculos.class
+                                                    .getName()).log(Level.SEVERE, null, ex);
+
+                                        }
 
                                     }
+
+                                } catch (NumberFormatException e) {
+
+                                    JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN VALOR ", "ERROR", 2);
 
                                 }
 
@@ -3507,39 +3534,37 @@ public class MdiVehiculos extends javax.swing.JFrame {
                     }
                 } else if (btnCobroDiasCoche.isSelected()) {
 
-                    int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
-                    
-                    ///////////////////////// sleep //////////////////////
                     try {
-                        //Ponemos a "Dormir" el programa durante los ms que queremos
-                        Thread.sleep(2 * 1000);
-                    } catch (Exception e) {
-                        System.out.println(e);
+
+                        int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
+
+                        int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
+
+                        double valorAlquiler = dias * 15000;
+
+                        txtValorCancelarCoche.setText("Factura por : " + valorAlquiler);
+                        txtKmRecorridoCoche.setText("Dias Alquiler : " + dias);
+
+                        modelCoche.setValueAt(kmFinales, filaSeleccionada, 2);
+
+                        modelCoche.setValueAt(true, filaSeleccionada, 3);
+
+                        try {
+                            SobreescribirListaCoches();
+                            gestionVehiculo.llenarVehiculos();
+                            pintarCoches();
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(MdiVehiculos.class
+                                    .getName()).log(Level.SEVERE, null, ex);
+
+                        }
+                    } catch (NumberFormatException ex) {
+
+                        JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN VALOR ", "ERROR", 2);
+
                     }
 
-                    ////////////////////////// sleep ///////////////////////////////////// 
-                    
-                    int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
-
-                    double valorAlquiler = dias * 15000;
-
-                    txtValorCancelarCoche.setText("Factura por : " + valorAlquiler);
-                    txtKmRecorridoCoche.setText("Dias Alquiler : " + dias);
-
-                    modelCoche.setValueAt(kmFinales, filaSeleccionada, 2);
-
-                    modelCoche.setValueAt(true, filaSeleccionada, 3);
-
-                    try {
-                        SobreescribirListaCoches();
-                        gestionVehiculo.llenarVehiculos();
-                        pintarCoches();
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(MdiVehiculos.class
-                                .getName()).log(Level.SEVERE, null, ex);
-
-                    }
                 } else {
 
                     JOptionPane.showMessageDialog(null, "Dede seleccionar gestion de cobro");
@@ -3663,14 +3688,21 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                             gestionVehiculo.llenarAlquiler(alquila);
 
-                            String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
-                            String correoRemite = "jgrisalesg@gmail.com";
-                            String mensaje = "El vehiculo de placas : " + tblFurgonetas.getValueAt(filaSeleccionada, 1) + "  tipo: Furgon "
-                                    + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
+                            try {
+
+                                String correoCliente = JOptionPane.showInputDialog("Ingrese correo del cliente");
+                                String correoRemite = "jgrisalesg@gmail.com";
+                                String mensaje = "El vehiculo de placas : " + tblFurgonetas.getValueAt(filaSeleccionada, 1) + "  tipo: Furgon "
+                                        + " Fue alquilado con exito gracias por utilizar nuestros servicios.";
+                                EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
+
+                            } catch (NullPointerException e) {
+
+                                JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN CORREO ", "ERROR", 2);
+
+                            }
 
                             JOptionPane.showMessageDialog(null, "Vehiculo de placa:" + "  " + (String) tblFurgonetas.getValueAt(filaSeleccionada, 1) + "  Alquilado al señor: " + "  " + cli.getNombre());
-
-                            EnviarCorreo.enviarMail(correoRemite, correoCliente, "Renta-car te informa", mensaje);
 
                             modelFurgon.setValueAt(false, filaSeleccionada, 3);
 
@@ -3722,33 +3754,41 @@ public class MdiVehiculos extends javax.swing.JFrame {
 
                                 alquilarvehiculo = new AlquilarVehiculo(vehiculoAlquilado, usuarioAutenticado, vehiculoAlquilado.getKm());
 
-                                int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
+                                try {
 
-                                if (kmFinales < vehiculoAlquilado.getKm()) {
+                                    int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
 
-                                    JOptionPane.showMessageDialog(null, "Erros en los Kms");
-                                } else {
+                                    if (kmFinales < vehiculoAlquilado.getKm()) {
 
-                                    int kmRecorridos = kmFinales - vehiculoAlquilado.getKm();
+                                        JOptionPane.showMessageDialog(null, "Erros en los Kms");
+                                    } else {
 
-                                    double valorAlquilrer = alquilarvehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
-                                    txtKmRecorridoFurgoneta.setText("Kms Recorridos : " + kmRecorridos);
-                                    txtValorCancelarFurgoneta.setText("Factura por : " + valorAlquilrer);
+                                        int kmRecorridos = kmFinales - vehiculoAlquilado.getKm();
 
-                                    modelFurgon.setValueAt(kmFinales, filaSeleccionada, 2);
+                                        double valorAlquilrer = alquilarvehiculo.calcularAlquiler(vehiculoAlquilado, usuarioAutenticado, kmRecorridos);
+                                        txtKmRecorridoFurgoneta.setText("Kms Recorridos : " + kmRecorridos);
+                                        txtValorCancelarFurgoneta.setText("Factura por : " + valorAlquilrer);
 
-                                    modelFurgon.setValueAt(true, filaSeleccionada, 3);
+                                        modelFurgon.setValueAt(kmFinales, filaSeleccionada, 2);
 
-                                    try {
-                                        SobreescribirListaFurgonestas();
-                                        gestionVehiculo.llenarVehiculos();
-                                        pintarFurgonetas();
+                                        modelFurgon.setValueAt(true, filaSeleccionada, 3);
 
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(MdiVehiculos.class
-                                                .getName()).log(Level.SEVERE, null, ex);
+                                        try {
+                                            SobreescribirListaFurgonestas();
+                                            gestionVehiculo.llenarVehiculos();
+                                            pintarFurgonetas();
+
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(MdiVehiculos.class
+                                                    .getName()).log(Level.SEVERE, null, ex);
+
+                                        }
 
                                     }
+
+                                } catch (NumberFormatException e) {
+
+                                    JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN VALOR ", "ERROR", 2);
 
                                 }
 
@@ -3762,39 +3802,38 @@ public class MdiVehiculos extends javax.swing.JFrame {
                     }
                 } else if (btnCobroDiasFurgoneta.isSelected()) {
 
-                    int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
-                    
-                    ///////////////////////// sleep //////////////////////
                     try {
-                        //Ponemos a "Dormir" el programa durante los ms que queremos
-                        Thread.sleep(2 * 1000);
-                    } catch (Exception e) {
-                        System.out.println(e);
+
+                        int dias = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dias de alquilquiler"));
+
+                        int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
+
+                        double valorAlquiler = dias * 25000;
+
+                        txtValorCancelarFurgoneta.setText("Factura por : " + valorAlquiler);
+                        txtKmRecorridoFurgoneta.setText("Dias Alquiler : " + dias);
+
+                        modelFurgon.setValueAt(kmFinales, filaSeleccionada, 2);
+
+                        modelFurgon.setValueAt(true, filaSeleccionada, 3);
+
+                        try {
+                            SobreescribirListaFurgonestas();
+                            gestionVehiculo.llenarVehiculos();
+                            pintarFurgonetas();
+
+                        } catch (IOException ex) {
+                            Logger.getLogger(MdiVehiculos.class
+                                    .getName()).log(Level.SEVERE, null, ex);
+
+                        }
+
+                    } catch (NumberFormatException ex) {
+
+                        JOptionPane.showMessageDialog(this, "NO INGRESO NINGUN VALOR ", "ERROR", 2);
+
                     }
 
-                    ////////////////////////// sleep ///////////////////////////////////// 
-                    
-                    int kmFinales = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese los Kms finales"));
-
-                    double valorAlquiler = dias * 25000;
-
-                    txtValorCancelarFurgoneta.setText("Factura por : " + valorAlquiler);
-                    txtKmRecorridoFurgoneta.setText("Dias Alquiler : " + dias);
-
-                    modelFurgon.setValueAt(kmFinales, filaSeleccionada, 2);
-
-                    modelFurgon.setValueAt(true, filaSeleccionada, 3);
-
-                    try {
-                        SobreescribirListaFurgonestas();
-                        gestionVehiculo.llenarVehiculos();
-                        pintarFurgonetas();
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(MdiVehiculos.class
-                                .getName()).log(Level.SEVERE, null, ex);
-
-                    }
                 } else {
 
                     JOptionPane.showMessageDialog(null, "Dede seleccionar gestion de cobro");
